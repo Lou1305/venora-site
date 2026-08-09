@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venora — Comprends ton corps, vis en harmonie</title>
+<meta name="description" content="Venora, l'app française de suivi de cycle qui respecte tes données. Prédictions honnêtes même pour les cycles irréguliers, suivi endométriose, coach IA. Sans pub, sans revente de données.">
+<meta property="og:title" content="Venora — Comprends ton corps, vis en harmonie">
+<meta property="og:description" content="L'app de cycle française qui ne revend pas tes données. Bientôt sur l'App Store et Google Play.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://getvenora.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  :root { --primary:#EC4899; --primary-dark:#D4537E; --navy:#1F2A44; --text2:#5A6478; --text3:#8A93A6; --pink-bg:#FDF2F6; --pink-soft:#FCE7F3; --surface:#FFFFFF; --border:#F0E4EA; --mint:#4FBFB0; --lavender:#A78BFA; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; color:var(--navy); background:var(--pink-bg); line-height:1.6; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  h1,h2,h3 { font-family:'Newsreader',Georgia,serif; font-weight:500; letter-spacing:-0.3px; }
+
+  header { position:sticky; top:0; z-index:50; background:rgba(253,242,246,0.85); backdrop-filter:blur(12px); border-bottom:0.5px solid var(--border); }
+  nav { display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .logo { font-family:'Newsreader',Georgia,serif; font-size:24px; font-weight:600; color:var(--primary-dark); text-decoration:none; }
+  .nav-links { display:flex; gap:26px; align-items:center; }
+  .nav-links a { color:var(--text2); text-decoration:none; font-size:14px; font-weight:500; }
+  .nav-links a:hover { color:var(--primary-dark); }
+  .nav-cta { background:var(--primary); color:#fff !important; padding:9px 18px; border-radius:999px; font-weight:700 !important; }
+  @media (max-width:640px){ .nav-links a:not(.nav-cta){ display:none; } }
+
+  .hero { padding:84px 0 60px; text-align:center; background:radial-gradient(ellipse at 50% -20%, var(--pink-soft), transparent 60%); }
+  .hero h1 { font-size:clamp(34px,6vw,58px); line-height:1.12; max-width:760px; margin:0 auto 18px; }
+  .hero h1 em { font-style:normal; color:var(--primary-dark); }
+  .hero p.sub { font-size:clamp(16px,2.4vw,19px); color:var(--text2); max-width:600px; margin:0 auto 34px; }
+  .stores { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .store-btn { display:flex; align-items:center; gap:11px; background:var(--navy); color:#fff; text-decoration:none; padding:13px 22px; border-radius:14px; transition:transform .18s ease, box-shadow .18s ease; }
+  .store-btn:hover { transform:translateY(-2px); box-shadow:0 10px 26px rgba(31,42,68,0.25); }
+  .store-btn .txt { text-align:left; line-height:1.15; }
+  .store-btn .small { font-size:10.5px; opacity:.75; display:block; }
+  .store-btn .big { font-size:16px; font-weight:700; }
+  .store-btn.soon { background:var(--surface); color:var(--navy); border:1px solid var(--border); cursor:default; }
+  .store-btn.soon:hover { transform:none; box-shadow:none; }
+  .soon-pill { font-size:10px; font-weight:700; color:var(--primary-dark); background:var(--pink-soft); border-radius:999px; padding:2px 8px; margin-left:4px; }
+  .hero .note { margin-top:16px; font-size:12.5px; color:var(--text3); }
+
+  section { padding:66px 0; }
+  .sec-title { text-align:center; font-size:clamp(26px,4vw,36px); margin-bottom:10px; }
+  .sec-sub { text-align:center; color:var(--text2); max-width:560px; margin:0 auto 42px; font-size:15.5px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; }
+  .card { background:var(--surface); border:0.5px solid var(--border); border-radius:20px; padding:26px 24px; }
+  .card .ic { width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; font-size:21px; }
+  .card h3 { font-size:19px; margin-bottom:7px; }
+  .card p { font-size:13.5px; color:var(--text2); }
+
+  .privacy { background:var(--navy); color:#fff; border-radius:28px; padding:56px 40px; text-align:center; }
+  .privacy h2 { color:#fff; font-size:clamp(24px,3.6vw,34px); margin-bottom:12px; }
+  .privacy p { color:rgba(255,255,255,0.75); max-width:640px; margin:0 auto 26px; font-size:15px; }
+  .privacy .pills { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .privacy .pill { border:1px solid rgba(255,255,255,0.25); border-radius:999px; padding:8px 16px; font-size:13px; color:#FBCFE8; }
+
+  .faq details { background:var(--surface); border:0.5px solid var(--border); border-radius:16px; padding:18px 22px; margin-bottom:10px; }
+  .faq summary { cursor:pointer; font-weight:600; font-size:15px; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+  .faq summary::after { content:'+'; color:var(--primary); font-size:20px; font-weight:400; }
+  .faq details[open] summary::after { content:'–'; }
+  .faq details p { margin-top:10px; font-size:14px; color:var(--text2); }
+
+  footer { border-top:0.5px solid var(--border); padding:36px 0 46px; }
+  .foot { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center; }
+  .foot .links { display:flex; gap:20px; flex-wrap:wrap; }
+  .foot a { color:var(--text3); text-decoration:none; font-size:13px; }
+  .foot a:hover { color:var(--primary-dark); }
+  .disclaimer { margin-top:18px; font-size:11.5px; color:var(--text3); line-height:1.55; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap"><nav>
+    <a class="logo" href="#">Venora</a>
+    <div class="nav-links">
+      <a href="#fonctions">Fonctionnalités</a>
+      <a href="#confiance">Confidentialité</a>
+      <a href="#faq">Questions</a>
+      <a class="nav-cta" href="#telecharger">Télécharger</a>
+    </div>
+  </nav></div>
+</header>
+
+<div class="hero" id="telecharger">
+  <div class="wrap">
+    <h1>Comprends ton corps.<br><em>Vis en harmonie.</em></h1>
+    <p class="sub">L'app française de suivi de cycle qui te dit la vérité — même quand ton cycle est irrégulier — et qui ne revend jamais tes données. Conçue avec 44 femmes.</p>
+    <div class="stores">
+      <!-- 🔧 LE JOUR DU LANCEMENT : remplacer href="#" par les vraies URLs stores et retirer class="soon" + le pill -->
+      <a class="store-btn soon" href="#" onclick="return false;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+        <span class="txt"><span class="small">Bientôt sur</span><span class="big">App Store</span></span>
+        <span class="soon-pill">BIENTÔT</span>
+      </a>
+      <a class="store-btn soon" href="#" onclick="return false;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3 13.8 12 3.6 21.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1zM14.9 13.1l2.6 2.5-11 6.2 8.4-8.7zM17.5 8.4l-2.6 2.5-8.4-8.7 11 6.2zM19.2 9.4l2.2 1.2c.8.5.8 1.6 0 2.1l-2.2 1.2-2.9-2.2 2.9-2.3z"/></svg>
+        <span class="txt"><span class="small">Bientôt sur</span><span class="big">Google Play</span></span>
+        <span class="soon-pill">BIENTÔT</span>
+      </a>
+    </div>
+    <div class="note">Gratuite, sans publicité. Lancement 2026 — la bêta est complète 💜</div>
+  </div>
+</div>
+
+<section id="fonctions">
+  <div class="wrap">
+    <h2 class="sec-title">Pensée pour la vraie vie</h2>
+    <p class="sec-sub">Pas de fausses promesses, pas de dates inventées : des prédictions honnêtes qui apprennent de ton corps, cycle après cycle.</p>
+    <div class="grid">
+      <div class="card"><div class="ic" style="background:var(--pink-soft);">🌸</div><h3>Cycles irréguliers respectés</h3><p>Personne ne peut prédire un cycle irrégulier au jour près — alors Venora ne fait pas semblant. Elle t'annonce une fenêtre honnête (« entre le 14 et le 19 ») qui se resserre à chaque cycle confirmé.</p></div>
+      <div class="card"><div class="ic" style="background:#EDE9FE;">📄</div><h3>Ton dossier pour le médecin</h3><p>Douleurs, symptômes, antalgiques qui ne font pas effet : tout se documente et sort en un rapport PDF clair. Le diagnostic d'endométriose prend 7 ans en moyenne — un bon dossier le raccourcit.</p></div>
+      <div class="card"><div class="ic" style="background:#CCFBF1;">💊</div><h3>Pilule vraiment comprise</h3><p>Avec pause, en continu, en schéma 3 mois : Venora suit ta plaquette au lieu d'afficher de fausses phases, et te rappelle ta prise jusqu'à ce qu'elle soit cochée.</p></div>
+      <div class="card"><div class="ic" style="background:var(--pink-soft);">💬</div><h3>Coach IA 24/7</h3><p>Une confidente qui connaît tes vraies dates de cycle et répond à tes questions — en te rappelant toujours qu'elle ne remplace pas un médecin.</p></div>
+      <div class="card"><div class="ic" style="background:#FEF3C7;">🍳</div><h3>Recettes & entraînements par phase</h3><p>Ton énergie change au fil du mois. Tes repas et tes séances s'adaptent à ta phase — avec tes allergies exclues automatiquement.</p></div>
+      <div class="card"><div class="ic" style="background:#EDE9FE;">🤝</div><h3>Modes pour chaque vie</h3><p>Mode ado pour les premières règles, mode partenaire, grossesse, périménopause, discrétion. Tu ne vois que ce qui te concerne.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="confiance">
+  <div class="wrap">
+    <div class="privacy">
+      <h2>Tes données ne sont pas un produit</h2>
+      <p>Certaines apps de cycle ont payé 59,5 millions de dollars pour avoir partagé les données de leurs utilisatrices. Venora est construite sur le principe inverse : ce que tu confies à l'app reste entre toi et l'app.</p>
+      <div class="pills">
+        <span class="pill">🇫🇷 Française</span>
+        <span class="pill">🚫 Zéro publicité</span>
+        <span class="pill">🔒 Zéro revente de données</span>
+        <span class="pill">📤 Export &amp; suppression en 1 clic</span>
+        <span class="pill">⚖️ RGPD au complet</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:720px;">
+    <h2 class="sec-title">Questions fréquentes</h2>
+    <p class="sec-sub"></p>
+    <div class="faq">
+      <details><summary>Venora est-elle gratuite ?</summary><p>Oui — la version gratuite est complète et sans publicité : calendrier, prédictions, check-ins, rappels. Les abonnements Plus et Pro débloquent les suivis avancés (flux, médicaments, coach IA, recettes personnalisées, données montre).</p></details>
+      <details><summary>Mes données sont-elles vraiment protégées ?</summary><p>Tes données sont chiffrées, ne sont jamais vendues ni partagées à des fins publicitaires, et tu peux les exporter ou les supprimer intégralement à tout moment depuis l'app. Notre politique de confidentialité est écrite pour être lue, pas pour te décourager.</p></details>
+      <details><summary>Mon cycle est irrégulier, ça marche pour moi ?</summary><p>C'est même notre spécialité. Au lieu d'une fausse date précise, Venora t'affiche une fenêtre honnête basée sur tes cycles les plus courts et les plus longs — et elle s'affine automatiquement à chaque cycle que tu confirmes.</p></details>
+      <details><summary>Venora peut-elle servir de contraception ?</summary><p><strong>Non, jamais.</strong> Venora est une application de bien-être : ses prédictions sont des estimations qui ne doivent en aucun cas être utilisées pour éviter ou obtenir une grossesse. Parles-en à un professionnel de santé.</p></details>
+      <details><summary>À partir de quel âge ?</summary><p>Venora est accessible à partir de 15 ans, avec un mode ado dédié aux premières règles : contenu simplifié, éducatif et bienveillant.</p></details>
+      <details><summary>Quand sort l'app ?</summary><p>Venora arrive sur l'App Store et Google Play courant 2026. La bêta privée est en cours avec nos testeuses fondatrices.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span class="logo" style="font-size:20px;">Venora</span>
+      <div class="links">
+        <a href="/confidentialite.html">Confidentialité</a>
+        <a href="/mentions-legales.html">Mentions légales</a>
+        <a href="mailto:contact@getvenora.com">Contact</a>
+      </div>
+    </div>
+    <p class="disclaimer">Venora est une application de bien-être. Elle n'est pas un dispositif médical : elle ne diagnostique, ne traite et ne prévient aucune maladie, et ne constitue pas un moyen de contraception. Les prédictions sont des estimations indicatives. Pour toute question de santé, consulte un professionnel. © 2026 Venora — Fait en France avec 💜</p>
+  </div>
+</footer>
+
+</body>
+</html>
