@@ -2170,7 +2170,6 @@ textarea:focus { border-color: var(--primary); }
 .vn-x { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--surface-2); color: var(--text-2); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 6; padding: 0; -webkit-tap-highlight-color: transparent; }
 .vn-x svg { width: 14px; height: 14px; }
 .vn-x:active { opacity: .7; }
-.modal-handle { padding: 10px 0; box-sizing: content-box; background-clip: content-box; cursor: grab; }
 .modal {
   background: var(--surface);
   width: 100%;
@@ -3208,21 +3207,26 @@ textarea:focus { border-color: var(--primary); }
 /* ── 25/10 (demande de Lou) : page d'abonnement SOBRE. Plus de violet ni de
    fuchsia : une seule encre (bleu nuit), des cartes blanches à bord fin, le
    sélecteur Mensuel / Annuel détaché des cartes, le bas aéré. ── */
-.pw-toggle { max-width: 330px; margin: 14px auto 24px; background: var(--pw-toggle-bg); }
+:root { --pw-accent: #6C7CDB; --pw-accent-soft: #EEF0FB; }
+[data-theme="dark"] { --pw-accent: #8F9CE8; --pw-accent-soft: #262B40; }
+/* Le sélecteur Mensuel / Annuel vit dans son propre cadre, nettement au-dessus
+   des offres. */
+.pw-toggle { max-width: 330px; margin: 10px auto 30px; background: var(--surface); border: 1px solid var(--pw-border); border-radius: 14px; padding: 5px; }
 .pw-save { white-space: nowrap; }
-.pw-toggle button.active { background: var(--pw-ink); color: var(--pw-ink-fg); box-shadow: none; }
-.pw-toggle button.active .pw-save { background: rgba(255,255,255,.18); color: var(--pw-ink-fg); }
+.pw-toggle button { border-radius: 10px; }
+.pw-toggle button.active { background: var(--pw-accent); color: #fff; box-shadow: none; }
+.pw-toggle button.active .pw-save { background: rgba(255,255,255,.2); color: #fff; }
 .pw-plan[data-plan="plus"], .pw-plan[data-plan="pro"], .pw-plan[data-plan="lifetime"],
-[data-app-theme] .pw-plan[data-plan="plus"], [data-app-theme] .pw-plan[data-plan="pro"], [data-app-theme] .pw-plan[data-plan="lifetime"] { --pw-sel: var(--pw-ink); }
+[data-app-theme] .pw-plan[data-plan="plus"], [data-app-theme] .pw-plan[data-plan="pro"], [data-app-theme] .pw-plan[data-plan="lifetime"] { --pw-sel: var(--pw-accent); }
 .pw-plan { border-color: var(--pw-border); background: var(--surface); margin-bottom: 12px; }
-.pw-plan.selected { border-color: var(--pw-ink); background: var(--surface); }
+.pw-plan.selected { border-color: var(--pw-accent); background: var(--pw-accent-soft); }
 .pw-plan.selected .pw-plan-name, .pw-plan.selected .pw-price { color: var(--pw-ink); }
-.pw-plan.selected .pw-chip { background: var(--pw-ink); color: var(--pw-ink-fg); }
-.pw-features li::before, [data-app-theme] .pw-features li::before { border-color: var(--pw-muted) !important; }
+.pw-plan.selected .pw-chip { background: var(--pw-accent); color: #fff; }
+.pw-features li::before, [data-app-theme] .pw-features li::before { border-color: var(--pw-accent) !important; }
 [data-app-theme] .pw-title { color: var(--pw-ink); }
-.pw-cta { background: var(--pw-ink); color: var(--pw-ink-fg); box-shadow: none; }
-.pw-store-btn { background: var(--pw-ink); color: var(--pw-ink-fg); }
-.pw-current-actions button { border-color: var(--pw-ink); color: var(--pw-ink); }
+.pw-cta { background: var(--pw-accent); color: #fff; box-shadow: none; }
+.pw-store-btn { background: var(--pw-accent); color: #fff; }
+.pw-current-actions button { border-color: var(--pw-accent); color: var(--pw-accent); }
 .pw-foot { padding: 14px 2px 8px; }
 .pw-trust { margin-top: 6px; font-size: 11.5px; }
 .pw-trust-sub { margin: 8px auto 0; max-width: 300px; line-height: 1.6; font-size: 11px; }
@@ -3233,7 +3237,8 @@ textarea:focus { border-color: var(--primary); }
 .pw-head { padding-right: 36px; }
 /* Section Notifications du profil : icônes toutes du même gris, un sous-titre
    d'une ligne au lieu d'un bouton d'aide. */
-.vn-notifs .icon-circle { background: var(--surface-2) !important; color: var(--text-2) !important; }
+.vn-notifs .icon-circle { background: transparent !important; }
+.vn-notifs .icon-circle svg { width: 22px; height: 22px; }
 .vn-notifs .label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .vn-sub { font-size: 11px; color: var(--text-3); font-weight: 400; line-height: 1.3; }
 /* Mon abonnement */
@@ -5987,9 +5992,9 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
 <!-- Mes maladies : placée APRÈS les tests et AVANT le rapport médecin — c'est
      l'ordre de lecture logique (je teste, je déclare, j'exporte). Violet adouci :
      l'encadré criait plus fort que les cartes de test qu'il accompagne. -->
-<div class="cond-hero" style="margin: 24px 20px 0; background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 9%, var(--surface)) 0%, var(--surface) 70%); border: 1px solid color-mix(in srgb, var(--primary) 34%, transparent); border-radius: 18px; padding: 16px 18px; box-shadow: none;">
+<div class="cond-hero" style="margin: 24px 20px 0; background: linear-gradient(135deg, color-mix(in srgb, #7C3AED 7%, var(--surface)) 0%, var(--surface) 70%); border: 1px solid #DCD4F5; border-radius: 18px; padding: 16px 18px; box-shadow: none;">
   <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
-    <span class="cond-hero-icon" style="width: 34px; height: 34px; border-radius: 11px; background: color-mix(in srgb, var(--primary) 14%, var(--surface)); color: var(--primary-dark, var(--primary)); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+    <span class="cond-hero-icon" style="width: 34px; height: 34px; border-radius: 11px; background: color-mix(in srgb, #7C3AED 12%, var(--surface)); color: #7C3AED; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
     <div style="font-family: 'Newsreader', Georgia, serif; font-size: 18px; color: var(--navy);" data-i18n="cond_title">Mes maladies</div>
   </div>
   <div style="font-size: 12.5px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px;" data-i18n="cond_sub">Dis à Venora ce que tu vis : elle adapte ton suivi, tes conseils et ton rapport médecin.</div>
@@ -8838,7 +8843,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
   </button>
   <div class="acc-body settings-section vn-notifs" id="acc-profile-notifs" style="display:none; margin: 6px 0 14px;">
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+    <div class="icon-circle" style="color: #9333EA;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
     <div class="label" data-i18n="setting_notifications">Rappels & notifications</div>
     <div class="switch on" id="notif-switch"></div>
   </div>
@@ -8846,16 +8851,15 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;">
       <span style="font-size: 12px; color: var(--text-2); line-height: 1.4;" id="notif-permission-status">—</span>
       <button class="notif-test-btn" id="notif-perm-btn" onclick="activerNotifsDepuisProfil()"><span data-i18n="notif_enable">Activer</span></button>
-      <button class="notif-test-btn" id="notif-test-btn" onclick="testNotification()" style="display:none;"><span data-i18n="notif_test">🔔 Tester</span></button>
     </div>
   </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 4-2 5-2 5h14s-2-1-2-5a5 5 0 0 0-5-5z"/><path d="M9 19a3 3 0 0 0 6 0"/></svg></div>
+    <div class="icon-circle" style="color: var(--primary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 4-2 5-2 5h14s-2-1-2-5a5 5 0 0 0-5-5z"/><path d="M9 19a3 3 0 0 0 6 0"/></svg></div>
     <div class="label"><span id="soft-reminders-label">Rappels doux</span><span class="vn-sub" id="soft-reminders-sub">Le jour prévu de tes règles</span></div>
     <div class="switch on" id="soft-reminders-switch"></div>
   </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+    <div class="icon-circle" style="color: #7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
     <div class="label"><span id="spm-reminders-label">Rappel avant mes règles (SPM)</span><span class="vn-sub" id="spm-reminders-sub">2 jours avant</span></div>
     <div class="switch" id="spm-reminders-switch"></div>
   </div>
@@ -8863,17 +8867,17 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
     <p style="font-size: 10.5px; color: var(--text-3); line-height: 1.5; margin: 0;" id="spm-reminders-hint"></p>
   </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18"/></svg></div>
+    <div class="icon-circle" style="color: #0F9F7A;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18"/></svg></div>
     <div class="label"><span id="phase-reminders-label">Phases du cycle</span><span class="vn-sub" id="phase-reminders-hint">Au début de chaque phase</span></div>
     <div class="switch on" id="phase-reminders-switch"></div>
   </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+    <div class="icon-circle" style="color: #4F46E5;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
     <div class="label"><span id="checkin-reminders-label">Check-in du soir</span><span class="vn-sub" id="checkin-reminders-hint">Vers 20h15, si rien n'est noté</span></div>
     <div class="switch on" id="checkin-reminders-switch"></div>
   </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+    <div class="icon-circle" style="color: #D97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
     <div class="label"><span id="discretion-label">Mode discrétion</span><span class="vn-sub" id="discretion-hint">Notifications sans détail visible</span></div>
     <div class="switch" id="discretion-switch"></div>
   </div>
@@ -8974,7 +8978,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
 <!-- 25/10 (demande de Lou) : version, liens légaux, mention bien-être et
      réinitialisation ont déménagé dans « À propos ». Il ne reste que la
      version, discrète, qui sert aussi de déverrouillage développeuse. -->
-<div onclick="devTapVersion()" style="padding: 18px 18px 28px; font-size: 10.5px; color: var(--text-3); text-align: center; opacity: 0.6; cursor: default; -webkit-user-select: none; user-select: none;" id="build-version-display">—</div>
+<div style="height: 24px;"></div>
 
 </div>
 </div>
@@ -11267,11 +11271,10 @@ function updateNotifPermissionStatus() {
   }
   const perm = Notification.permission;
   if (perm === 'granted') {
-    // Autorisées : plus rien à dire. Le bouton de test reste, seul.
+    // Autorisées : plus rien à dire, la ligne disparaît.
     el.textContent = '';
     if (bAct) bAct.style.display = 'none';
-    if (bTest) bTest.style.display = '';
-    if (row) row.style.display = '';
+    if (row) row.style.display = 'none';
     return;
   }
   if (perm === 'denied') {
@@ -29901,9 +29904,12 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
   // Tirer la poignée vers le bas ferme la feuille.
   var y0 = null, ovG = null;
   document.addEventListener('touchstart', function (e) {
-    var h = e.target && e.target.closest ? e.target.closest('.modal-handle') : null;
-    if (!h) return;
-    y0 = e.touches[0].clientY; ovG = h.closest('.modal-overlay');
+    // Le haut de la feuille (36 px, là où vit la poignée) se tire vers le bas.
+    var m = e.target && e.target.closest ? e.target.closest('.modal-overlay > .modal') : null;
+    if (!m) return;
+    var y = e.touches[0].clientY;
+    if (y - m.getBoundingClientRect().top > 36) return;
+    y0 = y; ovG = m.parentNode;
   }, { passive: true });
   document.addEventListener('touchend', function (e) {
     if (y0 === null) return;
