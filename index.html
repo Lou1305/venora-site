@@ -2163,6 +2163,14 @@ textarea:focus { border-color: var(--primary); }
   animation: fadeIn 0.3s;
 }
 .modal-overlay.open { display: flex; }
+/* Demande de Lou (25/10) : on doit pouvoir QUITTER n'importe quelle feuille.
+   Chaque .modal reçoit une croix en haut à droite (posée par vnPoserCroix) et
+   sa poignée se tire vers le bas. Les deux font la même chose que taper à côté. */
+.modal-overlay > .modal { position: relative; }
+.vn-x { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--surface-2); color: var(--text-2); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 6; padding: 0; -webkit-tap-highlight-color: transparent; }
+.vn-x svg { width: 14px; height: 14px; }
+.vn-x:active { opacity: .7; }
+.modal-handle { padding: 10px 0; box-sizing: content-box; background-clip: content-box; cursor: grab; }
 .modal {
   background: var(--surface);
   width: 100%;
@@ -3197,6 +3205,37 @@ textarea:focus { border-color: var(--primary); }
 .pw-trust-sub { text-align: center; font-size: 10.5px; color: var(--pw-muted); margin-top: 2px; }
 .pw-links { text-align: center; font-size: 11px; color: var(--pw-muted); margin-top: 8px; line-height: 1.6; }
 .pw-links a { color: var(--pw-text); text-decoration: underline; cursor: pointer; display: inline-block; padding: 6px 4px; -webkit-tap-highlight-color: rgba(0,0,0,.08); }
+/* ── 25/10 (demande de Lou) : page d'abonnement SOBRE. Plus de violet ni de
+   fuchsia : une seule encre (bleu nuit), des cartes blanches à bord fin, le
+   sélecteur Mensuel / Annuel détaché des cartes, le bas aéré. ── */
+.pw-toggle { max-width: 330px; margin: 14px auto 24px; background: var(--pw-toggle-bg); }
+.pw-save { white-space: nowrap; }
+.pw-toggle button.active { background: var(--pw-ink); color: var(--pw-ink-fg); box-shadow: none; }
+.pw-toggle button.active .pw-save { background: rgba(255,255,255,.18); color: var(--pw-ink-fg); }
+.pw-plan[data-plan="plus"], .pw-plan[data-plan="pro"], .pw-plan[data-plan="lifetime"],
+[data-app-theme] .pw-plan[data-plan="plus"], [data-app-theme] .pw-plan[data-plan="pro"], [data-app-theme] .pw-plan[data-plan="lifetime"] { --pw-sel: var(--pw-ink); }
+.pw-plan { border-color: var(--pw-border); background: var(--surface); margin-bottom: 12px; }
+.pw-plan.selected { border-color: var(--pw-ink); background: var(--surface); }
+.pw-plan.selected .pw-plan-name, .pw-plan.selected .pw-price { color: var(--pw-ink); }
+.pw-plan.selected .pw-chip { background: var(--pw-ink); color: var(--pw-ink-fg); }
+.pw-features li::before, [data-app-theme] .pw-features li::before { border-color: var(--pw-muted) !important; }
+[data-app-theme] .pw-title { color: var(--pw-ink); }
+.pw-cta { background: var(--pw-ink); color: var(--pw-ink-fg); box-shadow: none; }
+.pw-store-btn { background: var(--pw-ink); color: var(--pw-ink-fg); }
+.pw-current-actions button { border-color: var(--pw-ink); color: var(--pw-ink); }
+.pw-foot { padding: 14px 2px 8px; }
+.pw-trust { margin-top: 6px; font-size: 11.5px; }
+.pw-trust-sub { margin: 8px auto 0; max-width: 300px; line-height: 1.6; font-size: 11px; }
+.pw-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 2px 22px; margin-top: 16px; }
+.pw-links a { padding: 8px 0; text-decoration: none; border-bottom: 1px solid var(--pw-border); color: var(--pw-text); }
+.pw-bottom { padding-top: 12px; }
+.pw-cta-note { margin-top: 10px; font-size: 11px; color: var(--pw-muted); }
+.pw-head { padding-right: 36px; }
+/* Section Notifications du profil : icônes toutes du même gris, un sous-titre
+   d'une ligne au lieu d'un bouton d'aide. */
+.vn-notifs .icon-circle { background: var(--surface-2) !important; color: var(--text-2) !important; }
+.vn-notifs .label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.vn-sub { font-size: 11px; color: var(--text-3); font-weight: 400; line-height: 1.3; }
 /* Mon abonnement */
 .sub-card { border: 1px solid var(--pw-border); border-radius: 16px; padding: 16px; background: var(--pw-sel-bg); margin: 8px 0 14px; }
 .sub-plan { font-family: 'Newsreader', Georgia, serif; font-size: 20px; color: var(--pw-ink); display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
@@ -6786,7 +6825,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
       <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5z"/></svg>
       <span id="coach-quota-text">Coach disponible avec Plus</span>
     </span>
-    <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button>
+    <button class="icon-btn" onclick="effacerConversation()" aria-label="Effacer la conversation" title="Effacer la conversation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
   </div>
   <div style="padding: 6px 16px; font-size: 10px; color: var(--text-3); text-align: center; background: var(--surface-2); border-bottom: 0.5px solid var(--border);" data-i18n="ai_transparency">🤖 Réponses générées par une intelligence artificielle — ne remplace pas un professionnel de santé.</div>
 
@@ -8789,81 +8828,54 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
   </div>
 </div>
 
-<div class="settings-section-title" data-i18n="section_cycle">CYCLE & SANTÉ</div>
-<div class="settings-section">
-  <div class="settings-item" onclick="openGoalModal()">
-    <div class="icon-circle" style="background: var(--pink-soft); color: var(--accent-text);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-    <div class="label" data-i18n="setting_goal">Objectif</div>
-    <div class="value" id="profile-goal">Comprendre</div>
-    <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-  </div>
-</div>
+<!-- « Mes objectifs » retiré du profil (25/10, demande de Lou) : l'app ne s'en
+     servait presque pas. Le choix fait à l'onboarding reste enregistré. -->
 <!-- Notifications SORTI de la carte grise (le trait gris continuait sous l'encadré rose) -->
 <div style="padding: 0 20px;">
   <button class="acc-btn acc-btn-flat" onclick="toggleAcc('acc-profile-notifs', this, 'center')" style="margin: 8px 0 4px; width: 100%;">
     <span class="acc-btn-label" data-i18n="notif_group">Notifications <span class="acc-btn-meta" data-i18n="notif_group_meta">Rappels · SPM · discrétion</span></span>
     <span class="acc-chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8.5 12 15.5 19 8.5"/></svg></span>
   </button>
-  <div class="acc-body settings-section" id="acc-profile-notifs" style="display:none; margin: 6px 0 14px;">
+  <div class="acc-body settings-section vn-notifs" id="acc-profile-notifs" style="display:none; margin: 6px 0 14px;">
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle" style="background: var(--lavender-bg); color: #9333EA;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
     <div class="label" data-i18n="setting_notifications">Rappels & notifications</div>
     <div class="switch on" id="notif-switch"></div>
   </div>
-  <div class="settings-item" style="padding-top: 10px; padding-bottom: 10px;">
-    <div style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <span style="font-size: 12px; color: var(--text-2);" id="notif-permission-status">—</span>
-        <button class="notif-test-btn" onclick="testNotification()">
-          <span data-i18n="notif_test">🔔 Tester</span>
-        </button>
-      </div>
+  <div class="settings-item" id="notif-perm-row" style="padding-top: 10px; padding-bottom: 10px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;">
+      <span style="font-size: 12px; color: var(--text-2); line-height: 1.4;" id="notif-permission-status">—</span>
+      <button class="notif-test-btn" id="notif-perm-btn" onclick="activerNotifsDepuisProfil()"><span data-i18n="notif_enable">Activer</span></button>
+      <button class="notif-test-btn" id="notif-test-btn" onclick="testNotification()" style="display:none;"><span data-i18n="notif_test">🔔 Tester</span></button>
     </div>
   </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle" style="background: rgba(236,72,153,0.10); color: var(--primary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 4-2 5-2 5h14s-2-1-2-5a5 5 0 0 0-5-5z"/><path d="M9 19a3 3 0 0 0 6 0"/><path d="M4 4l16 16" opacity="0"/></svg></div>
-    <div class="label" id="soft-reminders-label">Rappels doux</div>
-    <button class="hint-toggle" onclick="event.stopPropagation(); toggleHint('soft-reminders-hint', this)" aria-label="En savoir plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 4-2 5-2 5h14s-2-1-2-5a5 5 0 0 0-5-5z"/><path d="M9 19a3 3 0 0 0 6 0"/></svg></div>
+    <div class="label"><span id="soft-reminders-label">Rappels doux</span><span class="vn-sub" id="soft-reminders-sub">Le jour prévu de tes règles</span></div>
     <div class="switch on" id="soft-reminders-switch"></div>
   </div>
-  <div class="settings-item hint-row" id="soft-reminders-hint" style="display: none; padding-top: 2px; padding-bottom: 12px;">
-    <p style="font-size: 10.5px; color: var(--text-3); line-height: 1.5; margin: 0;">Petits rappels bienveillants le jour prévu de tes règles pour penser à confirmer (« tes règles sont prévues aujourd'hui »). Si tu les coupes, tu recevras seulement une alerte en cas de vrai retard.</p>
-  </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle" style="background: rgba(124,58,237,0.12); color: #7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
-    <div class="label" id="spm-reminders-label">Rappel avant mes règles (SPM)</div>
-    <button class="hint-toggle" onclick="event.stopPropagation(); toggleHint('spm-hint-row', this)" aria-label="En savoir plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+    <div class="label"><span id="spm-reminders-label">Rappel avant mes règles (SPM)</span><span class="vn-sub" id="spm-reminders-sub">2 jours avant</span></div>
     <div class="switch" id="spm-reminders-switch"></div>
   </div>
   <div class="settings-item hint-row" id="spm-hint-row" style="display: none; padding-top: 2px; padding-bottom: 12px;">
     <p style="font-size: 10.5px; color: var(--text-3); line-height: 1.5; margin: 0;" id="spm-reminders-hint"></p>
   </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle" style="background: rgba(16,185,129,0.12); color: #0F9F7A;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18"/></svg></div>
-    <div class="label" id="phase-reminders-label">Phases du cycle</div>
-    <button class="hint-toggle" onclick="event.stopPropagation(); toggleHint('phase-reminders-hint-row', this)" aria-label="En savoir plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18"/></svg></div>
+    <div class="label"><span id="phase-reminders-label">Phases du cycle</span><span class="vn-sub" id="phase-reminders-hint">Au début de chaque phase</span></div>
     <div class="switch on" id="phase-reminders-switch"></div>
   </div>
-  <div class="settings-item hint-row" id="phase-reminders-hint-row" style="display: none; padding-top: 2px; padding-bottom: 12px;">
-    <p style="font-size: 10.5px; color: var(--text-3); line-height: 1.5; margin: 0;" id="phase-reminders-hint">Un message le matin du premier jour de chaque phase (folliculaire, ovulation, lutéale). Rien si tes phases ne sont pas suivies.</p>
-  </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle" style="background: rgba(79,70,229,0.12); color: #4F46E5;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
-    <div class="label" id="checkin-reminders-label">Check-in du soir</div>
-    <button class="hint-toggle" onclick="event.stopPropagation(); toggleHint('checkin-reminders-hint-row', this)" aria-label="En savoir plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+    <div class="label"><span id="checkin-reminders-label">Check-in du soir</span><span class="vn-sub" id="checkin-reminders-hint">Vers 20h15, si rien n'est noté</span></div>
     <div class="switch on" id="checkin-reminders-switch"></div>
   </div>
-  <div class="settings-item hint-row" id="checkin-reminders-hint-row" style="display: none; padding-top: 2px; padding-bottom: 12px;">
-    <p style="font-size: 10.5px; color: var(--text-3); line-height: 1.5; margin: 0;" id="checkin-reminders-hint">Vers 20h15, uniquement si tu n'as rien noté dans la journée.</p>
-  </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
-    <div class="icon-circle" style="background: var(--pink-soft); color: var(--accent-text);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
-    <div class="label" id="discretion-label">Mode discrétion</div>
-    <button class="hint-toggle" onclick="event.stopPropagation(); toggleHint('discretion-hint-row', this)" aria-label="En savoir plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+    <div class="label"><span id="discretion-label">Mode discrétion</span><span class="vn-sub" id="discretion-hint">Notifications sans détail visible</span></div>
     <div class="switch" id="discretion-switch"></div>
-  </div>
-  <div class="settings-item hint-row" id="discretion-hint-row" style="display: none; padding-top: 2px; padding-bottom: 12px;">
-    <p style="font-size: 10.5px; color: var(--text-3); line-height: 1.5; margin: 0;" id="discretion-hint">Rend tes notifications neutres (« Venora · nouvelle info ») sans détail visible sur l'écran verrouillé. L'app elle-même reste inchangée.</p>
   </div>
   </div>
 </div>
@@ -8914,9 +8926,10 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
     <div class="value" id="lang-value">Français</div>
     <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
   </div>
-  <div class="settings-item">
+  <div class="settings-item" onclick="openAbout()">
     <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
     <div class="label" data-i18n="setting_about">À propos</div>
+    <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
   </div>
 </div>
 
@@ -8958,25 +8971,10 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
   </div>
 </div>
 
-<div style="padding: 0 24px 12px;">
-  <button onclick="resetApp()" style="background: transparent; border: 1px solid var(--border); color: var(--text-2); font-family: 'DM Sans', sans-serif; font-size: 12px; padding: 10px 16px; border-radius: 999px; cursor: pointer; width: 100%;">
-    <span data-i18n="reset_app">Réinitialiser l'app</span>
-  </button>
-</div>
-
-<div style="text-align: center; padding: 20px 24px 0; font-size: 11px; color: var(--text-3);" data-i18n="footer_text">
-  Venora · Hébergé en Europe · Conforme RGPD
-</div>
-
-<!-- TOUT EN BAS de la page (demande de Lou) : version, liens légaux discrets mais
-     reconnaissables comme des liens (soulignés), et mention non-dispositif-médical -->
-<div onclick="devTapVersion()" style="padding: 10px 18px 0; font-size: 10px; color: var(--text-3); text-align: center; opacity: 0.6; cursor: default; -webkit-user-select: none; user-select: none;" id="build-version-display">—</div>
-<div style="padding: 5px 18px 0; text-align: center; font-size: 10px; opacity: 0.7;">
-  <a onclick="openLegal('cgu')" style="color: var(--text-3); cursor: pointer; text-decoration: underline;" data-i18n="legal_cgu">Conditions d'utilisation</a>
-  <span style="color: var(--text-3);"> · </span>
-  <a onclick="openLegal('cgv')" style="color: var(--text-3); cursor: pointer; text-decoration: underline;" data-i18n="legal_cgv">Conditions de vente</a>
-</div>
-<div style="padding: 4px 24px 24px; font-size: 9.5px; color: var(--text-3); text-align: center; opacity: 0.6; line-height: 1.5;" data-i18n="not_medical_device">Venora est une app de bien-être : elle n'est pas un dispositif médical, ne pose aucun diagnostic et ne constitue pas un moyen de contraception.</div>
+<!-- 25/10 (demande de Lou) : version, liens légaux, mention bien-être et
+     réinitialisation ont déménagé dans « À propos ». Il ne reste que la
+     version, discrète, qui sert aussi de déverrouillage développeuse. -->
+<div onclick="devTapVersion()" style="padding: 18px 18px 28px; font-size: 10.5px; color: var(--text-3); text-align: center; opacity: 0.6; cursor: default; -webkit-user-select: none; user-select: none;" id="build-version-display">—</div>
 
 </div>
 </div>
@@ -9076,9 +9074,9 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
 
       <div class="pw-foot">
         <div class="pw-trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Paiement sécurisé par l'App Store et Google Play</span></div>
-        <div class="pw-trust-sub">Tes données bancaires ne transitent jamais par Venora. Une période déjà payée n'est pas remboursée&nbsp;: annuler arrête le renouvellement suivant. Tu résilies en deux gestes depuis les réglages de ton téléphone.</div>
+        <div class="pw-trust-sub">Aucune donnée bancaire ne passe par Venora. Annuler arrête le prochain renouvellement&nbsp;: la période déjà payée n'est pas remboursée.</div>
         <div class="pw-links">
-          <a href="#" onclick="event.preventDefault(); openLegal('cgv')">Conditions de vente</a> · <a href="#" onclick="event.preventDefault(); restorePurchases()" id="pw-restore-link">Retrouver mon abonnement</a> · <a href="#" onclick="event.preventDefault(); closePaywall()">Plus tard</a>
+          <a href="#" onclick="event.preventDefault(); openLegal('cgv')">Conditions de vente</a><a href="#" onclick="event.preventDefault(); restorePurchases()" id="pw-restore-link">Retrouver mon abonnement</a><a href="#" onclick="event.preventDefault(); closePaywall()">Plus tard</a>
         </div>
       </div>
     </div>
@@ -9797,7 +9795,7 @@ const I18N = {
     section_app: 'APP', setting_goal: 'Mes objectifs', setting_cycle: 'Durée cycle',
     setting_notifications: 'Rappels & notifications',
     setting_appearance: 'Apparence', setting_language: 'Langue',
-    setting_about: 'À propos', premium_demo: 'Mode Premium (démo)',
+    setting_about: 'À propos', notif_enable: 'Activer', premium_demo: 'Mode Premium (démo)',
     theme_light: '☀️ Clair', theme_dark: '🌙 Sombre',
     footer_text: 'Venora · Hébergé en Europe · Conforme RGPD',
     tab_home: 'Accueil', tab_calendar: 'Calendrier', tab_coach: 'Coach',
@@ -10017,7 +10015,7 @@ const I18N = {
     section_app: 'APP', setting_goal: 'Goal', setting_cycle: 'Cycle length',
     setting_notifications: 'Reminders & notifications',
     setting_appearance: 'Appearance', setting_language: 'Language',
-    setting_about: 'About', premium_demo: 'Premium mode (demo)',
+    setting_about: 'About', notif_enable: 'Enable', premium_demo: 'Premium mode (demo)',
     theme_light: '☀️ Light', theme_dark: '🌙 Dark',
     footer_text: 'Venora · Hosted in Europe · GDPR compliant',
     tab_home: 'Home', tab_calendar: 'Calendar', tab_coach: 'Coach',
@@ -10234,7 +10232,7 @@ const I18N = {
     section_app: 'APP', setting_goal: 'Objetivo', setting_cycle: 'Duración ciclo',
     setting_notifications: 'Recordatorios y notificaciones',
     setting_appearance: 'Apariencia', setting_language: 'Idioma',
-    setting_about: 'Acerca de', premium_demo: 'Modo Premium (demo)',
+    setting_about: 'Acerca de', notif_enable: 'Activar', premium_demo: 'Modo Premium (demo)',
     theme_light: '☀️ Claro', theme_dark: '🌙 Oscuro',
     footer_text: 'Venora · Alojado en Europa · Conforme RGPD',
     tab_home: 'Inicio', tab_calendar: 'Calendario', tab_coach: 'Coach',
@@ -10422,7 +10420,7 @@ function toggleClass(id, cls, on) { const el = $(id); if (el) el.classList.toggl
 // ════════════════════════════════════════════════════════════════
 // BUILD VERSION — change this on every deploy to verify what's loaded
 // ════════════════════════════════════════════════════════════════
-const BUILD_VERSION = 'v2026-10-21-lot118';
+const BUILD_VERSION = 'v2026-10-25-lot119';
 // ⚠️ AVANT TOUTE SOUMISSION APP STORE / PLAY : repasser cette constante à false.
 // Un sélecteur d'abonnement visible = contournement de paywall (Apple 3.1.1).
 // C'est la SEULE ligne à changer : tout le reste en découle.
@@ -11258,18 +11256,49 @@ function isNotifSupported() {
 function updateNotifPermissionStatus() {
   const el = $('notif-permission-status');
   if (!el) return;
+  const row = $('notif-perm-row'), bAct = $('notif-perm-btn'), bTest = $('notif-test-btn');
+  const L = state.language || 'fr';
+  const natif = (typeof isNativeApp === 'function') && isNativeApp();
   if (!isNotifSupported()) {
-    el.textContent = state.language === 'fr' ? 'Non supporté sur ce navigateur' : (state.language === 'en' ? 'Not supported on this browser' : 'No soportado en este navegador');
+    el.textContent = ({ fr: 'Non disponible sur ce navigateur', en: 'Not available on this browser', es: 'No disponible en este navegador' })[L];
+    if (bAct) bAct.style.display = 'none'; if (bTest) bTest.style.display = 'none';
+    if (row) row.style.display = '';
     return;
   }
-  const labels = {
-    fr: { granted: '✅ Autorisé', denied: '⛔ Refusé · va dans les réglages du navigateur', default: '⏳ En attente d\'autorisation' },
-    en: { granted: '✅ Allowed', denied: '⛔ Denied · check browser settings', default: '⏳ Awaiting permission' },
-    es: { granted: '✅ Permitido', denied: '⛔ Denegado · ajustes del navegador', default: '⏳ Pendiente de permiso' }
-  };
-  const l = labels[state.language] || labels.fr;
-  el.textContent = l[Notification.permission] || l.default;
+  const perm = Notification.permission;
+  if (perm === 'granted') {
+    // Autorisées : plus rien à dire. Le bouton de test reste, seul.
+    el.textContent = '';
+    if (bAct) bAct.style.display = 'none';
+    if (bTest) bTest.style.display = '';
+    if (row) row.style.display = '';
+    return;
+  }
+  if (perm === 'denied') {
+    el.textContent = natif
+      ? ({ fr: 'Refusées sur ce téléphone · Réglages › Venora › Notifications', en: 'Blocked on this phone · Settings › Venora › Notifications', es: 'Bloqueadas en este teléfono · Ajustes › Venora › Notificaciones' })[L]
+      : ({ fr: 'Refusées · réglages du navigateur', en: 'Blocked · browser settings', es: 'Bloqueadas · ajustes del navegador' })[L];
+    if (bAct) bAct.style.display = 'none'; if (bTest) bTest.style.display = 'none';
+    if (row) row.style.display = '';
+    return;
+  }
+  el.textContent = ({ fr: 'Pas encore autorisées sur ce téléphone', en: 'Not yet allowed on this phone', es: 'Aún no autorizadas en este teléfono' })[L];
+  if (bAct) bAct.style.display = '';
+  if (bTest) bTest.style.display = 'none';
+  if (row) row.style.display = '';
 }
+// Le bouton « Activer » du profil : même parcours qu'à l'inscription
+// (explication, puis demande système).
+async function activerNotifsDepuisProfil() {
+  try {
+    var ok = false;
+    if (typeof proposerNotifications === 'function') ok = await proposerNotifications();
+    else ok = await requestNotifPermission();
+    updateNotifPermissionStatus();
+    if (ok && typeof showToast === 'function') showToast(({ fr: '🔔 Notifications activées', en: '🔔 Notifications on', es: '🔔 Notificaciones activadas' })[state.language || 'fr']);
+  } catch (e) { console.warn('activer notifs', e); }
+}
+window.activerNotifsDepuisProfil = activerNotifsDepuisProfil;
 
 async function requestNotifPermission() {
   if (!isNotifSupported()) {
@@ -22637,25 +22666,17 @@ function applyDiscreet() {
   const labPh = document.getElementById('phase-reminders-label');
   if (labPh) labPh.textContent = ({ fr: 'Phases du cycle', en: 'Cycle phases', es: 'Fases del ciclo' })[L];
   const hntPh = document.getElementById('phase-reminders-hint');
-  if (hntPh) hntPh.textContent = ({
-    fr: 'Un message le matin du premier jour de chaque phase (folliculaire, ovulation, lutéale). Rien si tes phases ne sont pas suivies.',
-    en: 'A message on the first morning of each phase (follicular, ovulation, luteal). Nothing if your phases are not tracked.',
-    es: 'Un mensaje la mañana del primer día de cada fase (folicular, ovulación, lútea). Nada si no se siguen tus fases.'
-  })[L];
+  if (hntPh) hntPh.textContent = ({ fr: 'Au début de chaque phase', en: 'At the start of each phase', es: 'Al inicio de cada fase' })[L];
+  const subSoft = document.getElementById('soft-reminders-sub');
+  if (subSoft) subSoft.textContent = ({ fr: 'Le jour prévu de tes règles', en: 'On the expected day of your period', es: 'El día previsto de tu regla' })[L];
+  const subSpm = document.getElementById('spm-reminders-sub');
+  if (subSpm) subSpm.textContent = ({ fr: '2 jours avant', en: '2 days before', es: '2 días antes' })[L];
   const labCk = document.getElementById('checkin-reminders-label');
   if (labCk) labCk.textContent = ({ fr: 'Check-in du soir', en: 'Evening check-in', es: 'Registro de la noche' })[L];
   const hntCk = document.getElementById('checkin-reminders-hint');
-  if (hntCk) hntCk.textContent = ({
-    fr: "Vers 20h15, uniquement si tu n'as rien noté dans la journée.",
-    en: 'Around 8:15 pm, only if you have not logged anything today.',
-    es: 'Hacia las 20:15, solo si no has anotado nada hoy.'
-  })[L];
+  if (hntCk) hntCk.textContent = ({ fr: "Vers 20h15, si rien n'est noté", en: 'Around 8:15 pm, if nothing is logged', es: 'Hacia las 20:15, si no hay registro' })[L];
   const hnt = document.getElementById('discretion-hint');
-  if (hnt) hnt.textContent = ({
-    fr: "Rend tes notifications neutres (« Venora · nouvelle info ») sans détail visible sur l'écran verrouillé. L'app elle-même reste inchangée.",
-    en: 'Makes your notifications neutral ("Venora · new info") with no visible detail on the lock screen. The app itself stays unchanged.',
-    es: 'Hace tus notificaciones neutras («Venora · nueva info») sin detalles visibles en la pantalla bloqueada. La app no cambia.'
-  })[L];
+  if (hnt) hnt.textContent = ({ fr: 'Notifications sans détail visible', en: 'Notifications with no visible detail', es: 'Notificaciones sin detalle visible' })[L];
 }
 
 // Les couleurs « sémantiques » (vert / ambre / rouge) posées en JS deviennent la
@@ -24502,6 +24523,27 @@ function maybeCoachCycleAlert() {
   if (state.chatHistory.length > 100) state.chatHistory = state.chatHistory.slice(-100);
   if (typeof saveState === 'function') saveState();
 }
+
+// Les trois points en haut du coach n'ouvraient rien. Ils deviennent une
+// corbeille : effacer la conversation, ici et en base.
+async function effacerConversation() {
+  var L = state.language || 'fr';
+  var T = {
+    fr: { t: 'Effacer la conversation ?', b: 'Le coach repart de zéro. Tes check-ins et ton cycle ne bougent pas.', ok: 'Effacer' },
+    en: { t: 'Clear the conversation?', b: 'The coach starts fresh. Your check-ins and cycle are untouched.', ok: 'Clear' },
+    es: { t: '¿Borrar la conversación?', b: 'El coach empieza de cero. Tus registros y tu ciclo no cambian.', ok: 'Borrar' }
+  }[L];
+  if (typeof confirmVenora !== 'function') return;
+  confirmVenora(T.t, T.b, T.ok, async function () {
+    state.chatHistory = [];
+    state.coachMemory = null;
+    saveState();
+    renderChatHistory();
+    try { if (sb && currentUserId) await sb.from('chat_messages').delete().eq('user_id', currentUserId); } catch (e) { console.warn('chat clear', e); }
+    showToast(({ fr: 'Conversation effacée', en: 'Conversation cleared', es: 'Conversación borrada' })[L]);
+  });
+}
+window.effacerConversation = effacerConversation;
 
 function renderChatHistory() {
   const area = $('chat-area');
@@ -29736,6 +29778,37 @@ window.applyCheckoutReturn = applyCheckoutReturn;
 
 
 // ────────────── RESET ──────────────
+// « À propos » : tout ce qui encombrait le bas du profil, au même endroit.
+function openAbout() {
+  var L = state.language || 'fr';
+  var T = {
+    fr: { t: 'À propos', host: 'Hébergé en Europe · Conforme RGPD', cgu: "Conditions d'utilisation", cgv: 'Conditions de vente', pol: 'Politique de confidentialité', reset: "Réinitialiser l'app", resetSub: 'Efface tout ce qui est sur ce téléphone.', contact: 'venora.pro@gmail.com' },
+    en: { t: 'About', host: 'Hosted in Europe · GDPR compliant', cgu: 'Terms of use', cgv: 'Terms of sale', pol: 'Privacy policy', reset: 'Reset the app', resetSub: 'Erases everything on this phone.', contact: 'venora.pro@gmail.com' },
+    es: { t: 'Acerca de', host: 'Alojado en Europa · Conforme RGPD', cgu: 'Condiciones de uso', cgv: 'Condiciones de venta', pol: 'Política de privacidad', reset: 'Reiniciar la app', resetSub: 'Borra todo lo que hay en este teléfono.', contact: 'venora.pro@gmail.com' }
+  }[L];
+  var med = (I18N[L] && I18N[L].not_medical_device) || I18N.fr.not_medical_device;
+  var lien = function (fn, txt) {
+    return '<button type="button" onclick="' + fn + '" style="display:flex;align-items:center;justify-content:space-between;width:100%;padding:13px 2px;background:transparent;border:none;border-bottom:0.5px solid var(--border);font-family:\'DM Sans\',sans-serif;font-size:14px;color:var(--navy);cursor:pointer;text-align:left;">'
+      + '<span>' + txt + '</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-3);"><polyline points="9 18 15 12 9 6"/></svg></button>';
+  };
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay open';
+  ov.innerHTML = '<div class="modal" style="padding-top:22px;">'
+    + '<div class="modal-handle"></div>'
+    + '<h3 style="margin:0 0 4px;">' + T.t + '</h3>'
+    + '<div style="font-size:12.5px;color:var(--text-2);margin-bottom:18px;">Venora · ' + (typeof BUILD_VERSION !== 'undefined' ? BUILD_VERSION : '') + '<br>' + T.host + '</div>'
+    + lien("openLegal('cgu')", T.cgu)
+    + lien("openLegal('cgv')", T.cgv)
+    + lien('openPrivacyPolicy()', T.pol)
+    + '<div style="font-size:11px;color:var(--text-3);line-height:1.55;margin-top:16px;">' + med + '</div>'
+    + '<div style="font-size:11px;color:var(--text-3);margin-top:8px;">Contact : ' + T.contact + '</div>'
+    + (isAuthed ? '' : '<button type="button" onclick="resetApp()" style="margin-top:18px;width:100%;background:transparent;border:1px solid var(--border);color:var(--text-2);font-family:\'DM Sans\',sans-serif;font-size:12.5px;padding:11px 16px;border-radius:999px;cursor:pointer;">' + T.reset + '</button><div style="font-size:10.5px;color:var(--text-3);text-align:center;margin-top:6px;">' + T.resetSub + '</div>')
+    + '</div>';
+  ov.addEventListener('click', function (e) { if (e.target === ov) ov.remove(); });
+  document.body.appendChild(ov);
+}
+window.openAbout = openAbout;
+
 function resetApp() {
   if (confirm(t('reset_confirm'))) {
     localStorage.removeItem(STORAGE_KEY);
@@ -29783,6 +29856,63 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
     if (e.target === overlay) overlay.classList.remove('open');
   });
 });
+
+// ── Croix + poignée sur TOUTES les feuilles ──
+// Une feuille sans sortie visible (le paywall, le changement de mot de passe…)
+// donnait l'impression d'être coincée. La croix et le tirage de la poignée
+// font exactement ce que fait un tap à côté : rien de plus, rien de moins.
+(function () {
+  function fermerFeuille(ov) {
+    if (!ov) return;
+    if (ov.dataset.vnStatique === '1') {
+      ov.classList.remove('open');
+      if (ov.id === 'paywall' && typeof track === 'function') { try { track('paywall_closed'); } catch (e) {} }
+      return;
+    }
+    // Feuille créée à la volée : on rejoue le tap à côté (chaque écran y a
+    // branché sa propre fermeture, avec son rappel), puis on retire ce qui reste.
+    try { ov.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true })); } catch (e) {}
+    if (ov.parentNode) ov.remove();
+  }
+  function poserCroix(ov) {
+    if (!ov || !ov.classList || !ov.classList.contains('modal-overlay')) return;
+    var m = null;
+    for (var i = 0; i < ov.children.length; i++) { if (ov.children[i].classList && ov.children[i].classList.contains('modal')) { m = ov.children[i]; break; } }
+    if (!m) return;
+    for (var j = 0; j < m.children.length; j++) { if (m.children[j].classList && m.children[j].classList.contains('vn-x')) return; }
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'vn-x'; b.setAttribute('aria-label', 'Fermer');
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    b.addEventListener('click', function (e) { e.stopPropagation(); e.preventDefault(); fermerFeuille(ov); });
+    m.appendChild(b);
+  }
+  document.querySelectorAll('.modal-overlay').forEach(function (ov) { ov.dataset.vnStatique = '1'; poserCroix(ov); });
+  try {
+    new MutationObserver(function (muts) {
+      muts.forEach(function (mu) {
+        Array.prototype.forEach.call(mu.addedNodes, function (n) {
+          if (n.nodeType !== 1) return;
+          poserCroix(n);
+          if (n.querySelectorAll) n.querySelectorAll('.modal-overlay').forEach(poserCroix);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true });
+  } catch (e) {}
+  // Tirer la poignée vers le bas ferme la feuille.
+  var y0 = null, ovG = null;
+  document.addEventListener('touchstart', function (e) {
+    var h = e.target && e.target.closest ? e.target.closest('.modal-handle') : null;
+    if (!h) return;
+    y0 = e.touches[0].clientY; ovG = h.closest('.modal-overlay');
+  }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (y0 === null) return;
+    var dy = e.changedTouches[0].clientY - y0, ov = ovG;
+    y0 = null; ovG = null;
+    if (dy > 50 && ov) fermerFeuille(ov);
+  }, { passive: true });
+  window.vnFermerFeuille = fermerFeuille;
+})();
 
 // ────────────── INIT ──────────────
 // ════════════════════════════════════════════════════════════════
