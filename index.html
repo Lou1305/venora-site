@@ -1259,7 +1259,7 @@ body {
 /* Saignement noté sous une méthode sans rythme (implant, injection, stérilet sans
    règles, micropilule) : le SEUL fait réel de ces calendriers. Même rose que le
    saignement de plaquette — c'est le même événement pour le corps. */
-.day-cell.bleed-logged { background: var(--primary-dark, var(--primary)); color: #fff; font-weight: 700; }
+.day-cell.bleed-logged { background: var(--primary); color: #fff; font-weight: 700; }
 /* Calendrier sans phases ni plaquette : sans fond, la grille n'était qu'une colonne
    de chiffres, impossible à parcourir. Chaque jour du mois reçoit donc un rond
    neutre — les jours colorés ressortent alors d'eux-mêmes. Le neutre suit le thème
@@ -1267,12 +1267,15 @@ body {
 /* Ce calendrier n'a qu'une seule information à porter : les jours de saignement.
    Tout se joue donc sur une seule teinte — celle du thème choisi — en deux valeurs :
    très pâle pour les jours sans rien, pleine pour les jours notés. */
-.day-cell.day-neutral { background: color-mix(in srgb, var(--primary) 10%, var(--surface-2)); color: var(--navy); }
-/* « Je n'ai pas de règles » : la grille est grise, sans la moindre teinte du thème.
-   Une pastille rose pâle laisserait croire à un cycle qui n'existe pas. */
-.calendar-grid.cal-noperiod .day-cell.day-neutral { background: #ECEEF2 !important; color: #5B6472 !important; }
-[data-theme="dark"] .calendar-grid.cal-noperiod .day-cell.day-neutral { background: rgba(255,255,255,.07) !important; color: var(--text) !important; }
-[data-theme="dark"] .day-cell.day-neutral { background: color-mix(in srgb, var(--primary) 16%, rgba(255,255,255,.04)); color: var(--text); }
+/* Demande de Lou (25/10) : il n'existe que TROIS calendriers, et aucune autre
+   couleur. 1) les phases (4 teintes figées) ; 2) la contraception à rythme
+   (teinte du thème : pâle = pris, grise = pause, pleine = saignement) ; 3) sans
+   cycle à peindre — pas de règles, pilule en continu, implant, injection,
+   stérilet, ou contraception sans date — qui reprend EXACTEMENT les teintes du
+   calendrier 2 : pâle partout, pleine sur un saignement noté. Le gris « pas de
+   règles » et le rose à 10 % n'existent plus. */
+.day-cell.day-neutral { background: color-mix(in srgb, var(--primary) 30%, #fff); color: color-mix(in srgb, var(--primary) 55%, #000); font-weight: 600; }
+[data-theme="dark"] .day-cell.day-neutral { background: color-mix(in srgb, var(--primary) 55%, #fff); color: color-mix(in srgb, var(--primary) 65%, #000); }
 .day-cell.pack-pause  { background: #E3E6EB; color: #5B6472; font-weight: 600; }
 /* Calendrier sans aucune donnée : flouté, avec l'appel à renseigner par-dessus */
 .calendar-grid.cal-blurred { filter: blur(3.5px); opacity: 0.5; pointer-events: none; }
@@ -1292,12 +1295,12 @@ body {
 [data-theme="dark"] .day-cell.luteale      { background: #F8C6D1; color: #8C1E47; }  /* 5,85:1 */
 /* Le rythme de plaquette : c'est la pastille que Lou désigne. L'encre valait
    #822854 sur #F9C8E0 — lisible sur le papier, pas sur un écran rétroéclairé. */
-[data-theme="dark"] .day-cell.pack-active  { background: #F2B6D5; color: #8A2558; }  /* 5,00:1 */
+[data-theme="dark"] .day-cell.pack-active  { background: color-mix(in srgb, var(--primary) 55%, #fff); color: color-mix(in srgb, var(--primary) 65%, #000); }
 [data-theme="dark"] .day-cell.pack-pause   { background: #C3CAD6; color: #333F52; }  /* 6,46:1 — l'aplat valait #E3E6EB, un disque blanc */
 /* Pastilles PLEINES : le blanc sur #EC4899 ne fait que 3,53:1. On garde la
    teinte de marque, assombrie juste assez pour que le blanc repasse le seuil. */
-[data-theme="dark"] .day-cell.pack-break   { background: #CD3F85; color: #FFFFFF; }  /* 4,52:1 */
-[data-theme="dark"] .day-cell.bleed-logged { background: #DB2777; color: #FFFFFF; }  /* 4,60:1 */
+[data-theme="dark"] .day-cell.pack-break   { background: color-mix(in srgb, var(--primary) 85%, #000); color: #FFFFFF; }
+[data-theme="dark"] .day-cell.bleed-logged { background: color-mix(in srgb, var(--primary) 85%, #000); color: #FFFFFF; }
 
 /* ── Jours à venir = estimations, pas des faits ──
    Même couleur, en plus clair. Aujourd'hui garde son intensité pleine. */
@@ -1315,6 +1318,10 @@ body {
    Mais il reste en pointillés — ce n'est pas un début de cycle, et il ne déplace
    aucune prédiction. Plein = règles, pointillés = saignement inattendu. */
 [data-theme="dark"] .day-cell.surprise-bleed { background: #BBD8F2; border-color: #7FB0E4; color: #0E4575; }
+/* Dans les calendriers 2 et 3 (sans phases), le bleu des règles n'existe pas :
+   le saignement inattendu prend la teinte du thème, en pointillés. */
+.calendar-grid.cal-themed .day-cell.surprise-bleed { background: color-mix(in srgb, var(--primary) 30%, #fff); border-color: var(--primary); color: color-mix(in srgb, var(--primary) 60%, #000); }
+[data-theme="dark"] .calendar-grid.cal-themed .day-cell.surprise-bleed { background: color-mix(in srgb, var(--primary) 55%, #fff); border-color: var(--primary); color: color-mix(in srgb, var(--primary) 70%, #000); }
 .day-cell.today {
   /* Le repère du jour suit le thème choisi — c'est un repère d'interface, pas une
      couleur de phase. Les phases, elles, restent figées. */
@@ -1642,32 +1649,23 @@ textarea:focus { border-color: var(--primary); }
   gap: 12px;
   border-bottom: 0.5px solid var(--border);
 }
+/* L'avatar du coach : un rond plein de la couleur du logo (bordeaux), le logo
+   centré dedans, sans liseré blanc. Le point vert a été retiré : « En ligne »
+   est déjà écrit dessous. */
 .coach-avatar {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: white;
+  background: #630722;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   flex-shrink: 0;
-  border: 1.5px solid var(--border);
   overflow: hidden;
-  padding: 4px;
+  padding: 0;
 }
-.coach-avatar img { width: 100%; height: auto; }
-.coach-avatar::after {
-  content: "";
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  width: 7px;
-  height: 7px;
-  background: #22C55E;
-  border: 1.5px solid var(--surface);
-  border-radius: 50%;
-}
+.coach-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .coach-info {
   flex: 1;
   min-width: 0;
@@ -8841,6 +8839,24 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
     <p style="font-size: 10.5px; color: var(--text-3); line-height: 1.5; margin: 0;" id="spm-reminders-hint"></p>
   </div>
   <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
+    <div class="icon-circle" style="background: rgba(16,185,129,0.12); color: #0F9F7A;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18"/></svg></div>
+    <div class="label" id="phase-reminders-label">Phases du cycle</div>
+    <button class="hint-toggle" onclick="event.stopPropagation(); toggleHint('phase-reminders-hint-row', this)" aria-label="En savoir plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="switch on" id="phase-reminders-switch"></div>
+  </div>
+  <div class="settings-item hint-row" id="phase-reminders-hint-row" style="display: none; padding-top: 2px; padding-bottom: 12px;">
+    <p style="font-size: 10.5px; color: var(--text-3); line-height: 1.5; margin: 0;" id="phase-reminders-hint">Un message le matin du premier jour de chaque phase (folliculaire, ovulation, lutéale). Rien si tes phases ne sont pas suivies.</p>
+  </div>
+  <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
+    <div class="icon-circle" style="background: rgba(79,70,229,0.12); color: #4F46E5;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+    <div class="label" id="checkin-reminders-label">Check-in du soir</div>
+    <button class="hint-toggle" onclick="event.stopPropagation(); toggleHint('checkin-reminders-hint-row', this)" aria-label="En savoir plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="switch on" id="checkin-reminders-switch"></div>
+  </div>
+  <div class="settings-item hint-row" id="checkin-reminders-hint-row" style="display: none; padding-top: 2px; padding-bottom: 12px;">
+    <p style="font-size: 10.5px; color: var(--text-3); line-height: 1.5; margin: 0;" id="checkin-reminders-hint">Vers 20h15, uniquement si tu n'as rien noté dans la journée.</p>
+  </div>
+  <div class="settings-item" onclick="toggleSwitch(event, this.querySelector('.switch'))">
     <div class="icon-circle" style="background: var(--pink-soft); color: var(--accent-text);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
     <div class="label" id="discretion-label">Mode discrétion</div>
     <button class="hint-toggle" onclick="event.stopPropagation(); toggleHint('discretion-hint-row', this)" aria-label="En savoir plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
@@ -9474,6 +9490,8 @@ const DEFAULT_STATE = {
   birthDate: null,           // date complète (YYYY-MM-DD) -> âge exact, règle des 15 ans au jour près
   endoTracking: null,        // null = auto (déclaré/test), true = forcé ON, false = masqué
   spmReminders: null,        // null = auto (détection), true = forcé ON, false = forcé OFF
+  phaseReminders: true,      // notification au premier jour de chaque phase + ovulation
+  checkinReminders: true,    // rappel du check-in du soir
   lastSpmNotice: null,       // date des règles prévues pour lesquelles la notif SPM a déjà été envoyée
   // Data
   logs: {},                  // { 'YYYY-MM-DD': { mood, intensity, symptoms, customSymptoms, notes } }
@@ -10504,6 +10522,9 @@ async function handleAuthChange(event, session) {
     state.email = session.user.email || state.email;
     track('auth_state', { event, user_id: currentUserId });
     
+    // On note qu'une session a existé sur CET appareil : c'est la seule
+    // situation où « ta session a expiré » a un sens.
+    if (!state.hadSession) { state.hadSession = true; try { saveState(); } catch (e) {} }
     if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
       // Pull cloud data into state
       await pullFromCloud();
@@ -10542,7 +10563,13 @@ async function handleAuthChange(event, session) {
     updateSyncStatus();
     // Déconnexion silencieuse : elle continuait à noter ses cycles pendant des
     // semaines en croyant être sauvegardée. On le dit, et on donne le bouton.
-    if (state.email && event !== 'SIGNED_OUT') {
+    if (event === 'SIGNED_OUT') { state.hadSession = false; try { saveState(); } catch (e) {} }
+    // Le bandeau ne s'affichait pas que sur une vraie expiration : après une
+    // déconnexion ou une suppression de compte, le lancement suivant trouvait
+    // encore state.email, aucune session, et criait « expirée » à tort. Il ne
+    // sort plus que si une session a réellement existé ici et a disparu sans
+    // déconnexion volontaire.
+    else if (state.email && state.hadSession === true) {
       try { vnSessionBanner(); } catch (e) {}
     }
   }
@@ -10835,6 +10862,7 @@ async function pushProfileToCloud() {
         teenQuizScores: state.teenQuizScores || {}, teenKit: state.teenKit || {}, teenJournal: state.teenJournal || [], teenJournalPin: state.teenJournalPin || null,
         isTeenMode: !!state.isTeenMode, tdpmFlagged: !!state.tdpmFlagged, endoTracking: !!state.endoTracking,
         spmReminders: state.spmReminders, lastSpmNotice: state.lastSpmNotice || null,
+        phaseReminders: state.phaseReminders !== false, checkinReminders: state.checkinReminders !== false,
         customSymptoms: state.customSymptoms || [], coachMemory: state.coachMemory || null,
         reportInfo: state.reportInfo || null, moodHistory: state.moodHistory || [],
         firstUseDate: state.firstUseDate || null, minorLocal: !!state.minorLocal, fifteenPromptShown: !!state.fifteenPromptShown,
@@ -11082,6 +11110,8 @@ async function pullFromCloud() {
           if (typeof M.tdpmFlagged === 'boolean') state.tdpmFlagged = M.tdpmFlagged;
           if (typeof M.endoTracking === 'boolean') state.endoTracking = M.endoTracking;
           if (typeof M.spmReminders !== 'undefined') state.spmReminders = M.spmReminders;
+          if (typeof M.phaseReminders === 'boolean') state.phaseReminders = M.phaseReminders;
+          if (typeof M.checkinReminders === 'boolean') state.checkinReminders = M.checkinReminders;
           if (M.lastSpmNotice) state.lastSpmNotice = M.lastSpmNotice;
           if (arr('customSymptoms')) state.customSymptoms = Array.from(new Set((state.customSymptoms || []).concat(M.customSymptoms)));
           if (M.coachMemory && !state.coachMemory) state.coachMemory = M.coachMemory;
@@ -14846,7 +14876,6 @@ function renderCycleBars() {
   if (hi - lo < 8) { hi = lo + 8; }
   var H = 168;   // le graphique était écrasé : on lui rend de la hauteur
   var pct = function (v) { return Math.max(6, Math.min(100, Math.round((v - lo) / (hi - lo) * 100))); };
-  var refTop = 100 - pct(ref);
 
   // Densité : les barres se partagent la largeur (aucun scroll horizontal), mais
   // l'espace entre elles suit leur nombre au lieu d'un réglage unique qui tassait
@@ -14858,8 +14887,18 @@ function renderCycleBars() {
   else if (n <= 12) { gap = 6;  barMax = 23; numFs = 10;   datFs = 8.5; }
   else              { gap = 4;  barMax = 19; numFs = 9;    datFs = 8; }
 
+  // Le trait de référence était posé en % de TOUTE la colonne, alors que la
+  // barre vit entre son chiffre (en haut) et sa date (en bas) : il passait
+  // ~19 px trop bas, pile au niveau du cycle d'en dessous. Les barres et le
+  // trait partagent désormais la même échelle, en pixels, sur la zone utile.
+  var zoneBas = 19;                                   // date : 11 px + marge 8
+  var zoneHaut = Math.ceil(numFs) + 6 + 2;            // chiffre + marge + padding
+  var zoneH = H - zoneBas - zoneHaut;
+  var px = function (v) { return Math.round(pct(v) / 100 * zoneH); };
+  var refTopPx = H - zoneBas - px(ref);
+
   var bars = rows.map(function (r, i) {
-    var h = pct(r.len);
+    var h = px(r.len);
     var far = Math.abs(r.len - ref) >= 5;   // cycle nettement hors de son habitude
     // Une date sur deux au-delà de 12 cycles : sinon les mois se chevauchent.
     var showDate = (n <= 12) || (i % 2 === 0);
@@ -14870,7 +14909,7 @@ function renderCycleBars() {
       // proches de la moyenne. Petit fond de la couleur de la carte : le nombre
       // perce la ligne au lieu d'être barré par elle.
       + '<div style="position:relative;z-index:3;font-size:' + numFs + 'px;font-weight:700;color:' + (far ? 'var(--primary-dark, var(--primary))' : 'var(--navy)') + ';margin-bottom:6px;line-height:1;background:var(--surface);padding:1px 3px;border-radius:4px;">' + r.len + '</div>'
-      + '<div title="' + r.len + ' jours — ' + r.d.getDate() + ' ' + VN_MOIS[r.d.getMonth()] + ' ' + r.d.getFullYear() + '" style="width:100%;max-width:' + barMax + 'px;height:' + h + '%;border-radius:6px 6px 3px 3px;'
+      + '<div title="' + r.len + ' jours — ' + r.d.getDate() + ' ' + VN_MOIS[r.d.getMonth()] + ' ' + r.d.getFullYear() + '" style="width:100%;max-width:' + barMax + 'px;height:' + h + 'px;border-radius:6px 6px 3px 3px;'
       + 'background:' + (far ? 'var(--primary)' : 'color-mix(in srgb, var(--primary) 42%, #fff)') + ';"></div>'
       + '<div style="font-size:' + datFs + 'px;color:var(--text-3);margin-top:8px;height:11px;white-space:nowrap;">' + (showDate ? lab : '') + '</div>'
       + '</div>';
@@ -14892,7 +14931,7 @@ function renderCycleBars() {
 
   wrap.innerHTML =
     '<div style="position:relative;height:' + H + 'px;margin-top:14px;">'
-    + '<div style="position:absolute;left:0;right:0;top:' + refTop + '%;border-top:2px dashed color-mix(in srgb, var(--primary) 60%, #fff);pointer-events:none;z-index:2;"></div>'
+    + '<div style="position:absolute;left:0;right:0;top:' + refTopPx + 'px;border-top:2px dashed color-mix(in srgb, var(--primary) 60%, #fff);pointer-events:none;z-index:2;"></div>'
     + '<div style="display:flex;align-items:flex-end;gap:' + gap + 'px;height:100%;">' + bars + '</div>'
     + '</div>'
     + legendRow;
@@ -19036,6 +19075,15 @@ async function logout() {
         }
       }
     } catch (e) {}
+    // App native : le jeton Firebase de CE téléphone vit en base sous « fcm: ».
+    // Sans cette ligne, le téléphone continuait de recevoir les rappels de
+    // l'ancien compte après la déconnexion.
+    try {
+      if (sb && currentUserId && typeof isNativeApp === 'function' && isNativeApp()) {
+        await sb.from('push_subscriptions').delete().eq('user_id', currentUserId).like('endpoint', 'fcm:%');
+      }
+    } catch (e) {}
+    state.hadSession = false;
     // Sign out from Supabase
     if (sb) await sb.auth.signOut();
   } catch (e) { console.warn('Supabase signOut failed', e); }
@@ -21907,6 +21955,8 @@ function applyStateToUI() {
     toggleClass('notif-switch', 'on', state.notifications);
     toggleClass('soft-reminders-switch', 'on', state.softReminders !== false);
     if (typeof refreshSpmSetting === 'function') refreshSpmSetting();
+    toggleClass('phase-reminders-switch', 'on', state.phaseReminders !== false);
+    toggleClass('checkin-reminders-switch', 'on', state.checkinReminders !== false);
     toggleClass('discretion-switch', 'on', state.discreet);
     toggleClass('wearable-switch', 'on', !!state.hasWearable);
     
@@ -22584,6 +22634,22 @@ function applyDiscreet() {
 
   const lab = document.getElementById('discretion-label');
   if (lab) lab.textContent = ({ fr: 'Mode discrétion', en: 'Discreet mode', es: 'Modo discreto' })[L];
+  const labPh = document.getElementById('phase-reminders-label');
+  if (labPh) labPh.textContent = ({ fr: 'Phases du cycle', en: 'Cycle phases', es: 'Fases del ciclo' })[L];
+  const hntPh = document.getElementById('phase-reminders-hint');
+  if (hntPh) hntPh.textContent = ({
+    fr: 'Un message le matin du premier jour de chaque phase (folliculaire, ovulation, lutéale). Rien si tes phases ne sont pas suivies.',
+    en: 'A message on the first morning of each phase (follicular, ovulation, luteal). Nothing if your phases are not tracked.',
+    es: 'Un mensaje la mañana del primer día de cada fase (folicular, ovulación, lútea). Nada si no se siguen tus fases.'
+  })[L];
+  const labCk = document.getElementById('checkin-reminders-label');
+  if (labCk) labCk.textContent = ({ fr: 'Check-in du soir', en: 'Evening check-in', es: 'Registro de la noche' })[L];
+  const hntCk = document.getElementById('checkin-reminders-hint');
+  if (hntCk) hntCk.textContent = ({
+    fr: "Vers 20h15, uniquement si tu n'as rien noté dans la journée.",
+    en: 'Around 8:15 pm, only if you have not logged anything today.',
+    es: 'Hacia las 20:15, solo si no has anotado nada hoy.'
+  })[L];
   const hnt = document.getElementById('discretion-hint');
   if (hnt) hnt.textContent = ({
     fr: "Rend tes notifications neutres (« Venora · nouvelle info ») sans détail visible sur l'écran verrouillé. L'app elle-même reste inchangée.",
@@ -24846,6 +24912,9 @@ function renderCalendar() {
     var _greyCal = ((typeof noPeriodsMode === 'function') && noPeriodsMode())
       || ((typeof contraContinuous === 'function') && contraContinuous());
     if (_grid) _grid.classList.toggle('cal-noperiod', !!_greyCal);
+    // Calendriers 2 et 3 : teinte du thème partout, y compris le saignement inattendu.
+    var _themed = (typeof cyclePhasesMeaningful === 'function') && !cyclePhasesMeaningful();
+    if (_grid) _grid.classList.toggle('cal-themed', !!_themed);
   } catch (e) {}
   // Cycle irrégulier : on montre la FENÊTRE au lieu d'une moyenne trompeuse.
   try {
@@ -25900,6 +25969,8 @@ function _hasSurpriseBleed() {
   } catch (e) { return false; }
 }
 var SURPRISE_LEGEND_HTML = '<div class="legend-item" id="legend-surprise"><div class="legend-dot" style="background:#DCEAF9;border:2px dashed #9EC5F0;box-sizing:border-box;"></div><span data-i18n="legend_surprise">Saignement inattendu</span></div>';
+// Même repère, teinte du thème : pour les calendriers sans phases.
+var SURPRISE_LEGEND_THEMED = '<div class="legend-item" id="legend-surprise"><div class="legend-dot" style="background:color-mix(in srgb, var(--primary) 30%, #fff);border:2px dashed var(--primary);box-sizing:border-box;"></div><span data-i18n="legend_surprise">Saignement inattendu</span></div>';
 function _showSurpriseLegend() {
   var el = document.getElementById('legend-surprise');
   if (el) el.style.display = _hasSurpriseBleed() ? '' : 'none';
@@ -25949,17 +26020,28 @@ function renderCalLegend() {
           en: ['Logged bleeding', 'Your calendar stays neutral: Venora announces no dates. Tap a day to log how you felt.'],
           es: ['Sangrado anotado', 'Tu calendario queda neutro: Venora no anuncia ninguna fecha. Pulsa un día para anotar cómo te sentiste.'] };
     var np = NP[L] || NP.fr;
-    legend.innerHTML = '<div class="legend-item"><div class="legend-dot" style="background:var(--primary-dark, var(--primary));"></div><span>' + np[0] + '</span></div>';
+    legend.innerHTML = '<div class="legend-item"><div class="legend-dot" style="background:color-mix(in srgb, var(--primary) 30%, #fff);"></div><span>' + ({ fr: 'Jour sans rien de prévu', en: 'Nothing scheduled', es: 'Día sin nada previsto' })[L] + '</span></div>'
+      + '<div class="legend-item"><div class="legend-dot" style="background:var(--primary);"></div><span>' + np[0] + '</span></div>';
     _setLegendNote(legendNote(np[1]));
     legend.style.display = '';
     return;
   }
   var meaningful = (typeof cyclePhasesMeaningful !== 'function') || cyclePhasesMeaningful();
   var pack = (typeof contraHasPackRhythm === 'function') && contraHasPackRhythm();
+  // Le mot de la légende suit la méthode : une femme sous patch ne prend pas de
+  // « comprimé », et celle sous anneau non plus.
+  var _meth = (state.pill && state.pill.method) || 'pilule';
+  var _placebo = !!(state.pill && state.pill.placeboDays > 0);
+  var _W = {
+    patch:  { fr: ['Patch', 'Sans patch'], en: ['Patch on', 'Patch off'], es: ['Parche', 'Sin parche'] },
+    anneau: { fr: ['Anneau', 'Sans anneau'], en: ['Ring in', 'Ring out'], es: ['Anillo', 'Sin anillo'] },
+    pilule: { fr: ['Comprimé', _placebo ? 'Comprimé inactif' : 'Sans comprimé'], en: ['Pill taken', _placebo ? 'Inactive pill' : 'No pill'], es: ['Comprimido', _placebo ? 'Comprimido inactivo' : 'Sin comprimido'] }
+  };
+  var _w = (_W[_meth] || _W.pilule);
   var T = {
-    fr: { act: 'Comprimé', pause: (state.pill && state.pill.placeboDays > 0) ? 'Comprimé inactif' : 'Sans comprimé', brk: 'Saignement', none: 'Pas de repère de cycle', est: 'Les jours à venir sont des estimations : ils se précisent à chaque cycle confirmé.<div style=\'text-align:left;max-width:292px;margin:10px auto 0;padding-top:9px;border-top:0.5px solid var(--border);\'><div style=\'font-weight:700;color:var(--navy);margin-bottom:5px;\'>Comment un cycle est confirmé</div><div style=\'margin-bottom:4px;\'><strong>1.</strong> Un cycle commence le <strong>1er jour de tes règles</strong>.</div><div style=\'margin-bottom:4px;\'><strong>2.</strong> Il se termine la veille du 1er jour des règles suivantes.</div><div style=\'margin-bottom:4px;\'><strong>3.</strong> Quand tu notes ce nouveau 1er jour, Venora compte les jours entre les deux.</div><div style=\'margin-bottom:4px;\'><strong>4.</strong> Ce nombre devient un <strong>cycle confirmé</strong>.</div><div style=\'margin-bottom:4px;\'><strong>5.</strong> Il n\'est retenu que s\'il dure <strong>entre 18 et 45 jours</strong>. En dehors, c\'est presque toujours une date oubliée : Venora l\'ignore plutôt que de fausser ta moyenne.</div><div><strong>6.</strong> Chaque cycle confirmé ajuste ta moyenne, donc tes prochaines dates.</div><div style=\'margin-top:7px;\'>Tant que tes prochaines règles ne sont pas notées, le cycle en cours <strong>n\'est pas confirmé</strong> : c\'est une estimation.</div></div>' },
-    en: { act: 'Pill taken', pause: 'No pill', brk: 'Bleeding', none: 'No cycle landmark', est: 'Upcoming days are estimates: they sharpen with each confirmed cycle.<div style=\'text-align:left;max-width:292px;margin:10px auto 0;padding-top:9px;border-top:0.5px solid var(--border);\'><div style=\'font-weight:700;color:var(--navy);margin-bottom:5px;\'>How a cycle gets confirmed</div><div><strong>1.</strong> A cycle starts on <strong>day 1 of your period</strong>.</div><div><strong>2.</strong> It ends the day before your next period starts.</div><div><strong>3.</strong> When you log that new day 1, Venora counts the days in between.</div><div><strong>4.</strong> That number becomes a <strong>confirmed cycle</strong>.</div><div><strong>5.</strong> It only counts if it lasts <strong>18 to 45 days</strong> — outside that range it is almost always a missed entry.</div><div><strong>6.</strong> Every confirmed cycle adjusts your average, and your next dates.</div></div>' },
-    es: { act: 'Comprimido', pause: 'Sin comprimido', brk: 'Sangrado', none: 'Sin referencia de ciclo', est: 'Los días futuros son estimaciones: se afinan con cada ciclo confirmado.<div style=\'text-align:left;max-width:292px;margin:10px auto 0;padding-top:9px;border-top:0.5px solid var(--border);\'><div style=\'font-weight:700;color:var(--navy);margin-bottom:5px;\'>Cómo se confirma un ciclo</div><div><strong>1.</strong> Un ciclo empieza el <strong>1.er día de tu regla</strong>.</div><div><strong>2.</strong> Termina la víspera del 1.er día de la regla siguiente.</div><div><strong>3.</strong> Cuando anotas ese nuevo día 1, Venora cuenta los días entre ambos.</div><div><strong>4.</strong> Ese número es un <strong>ciclo confirmado</strong>.</div><div><strong>5.</strong> Solo cuenta si dura <strong>entre 18 y 45 días</strong>.</div><div><strong>6.</strong> Cada ciclo confirmado ajusta tu media y tus próximas fechas.</div></div>' }
+    fr: { act: _w.fr[0], pause: _w.fr[1], brk: 'Saignement', none: 'Pas de repère de cycle', est: 'Les jours à venir sont des estimations : ils se précisent à chaque cycle confirmé.<div style=\'text-align:left;max-width:292px;margin:10px auto 0;padding-top:9px;border-top:0.5px solid var(--border);\'><div style=\'font-weight:700;color:var(--navy);margin-bottom:5px;\'>Comment un cycle est confirmé</div><div style=\'margin-bottom:4px;\'><strong>1.</strong> Un cycle commence le <strong>1er jour de tes règles</strong>.</div><div style=\'margin-bottom:4px;\'><strong>2.</strong> Il se termine la veille du 1er jour des règles suivantes.</div><div style=\'margin-bottom:4px;\'><strong>3.</strong> Quand tu notes ce nouveau 1er jour, Venora compte les jours entre les deux.</div><div style=\'margin-bottom:4px;\'><strong>4.</strong> Ce nombre devient un <strong>cycle confirmé</strong>.</div><div style=\'margin-bottom:4px;\'><strong>5.</strong> Il n\'est retenu que s\'il dure <strong>entre 18 et 45 jours</strong>. En dehors, c\'est presque toujours une date oubliée : Venora l\'ignore plutôt que de fausser ta moyenne.</div><div><strong>6.</strong> Chaque cycle confirmé ajuste ta moyenne, donc tes prochaines dates.</div><div style=\'margin-top:7px;\'>Tant que tes prochaines règles ne sont pas notées, le cycle en cours <strong>n\'est pas confirmé</strong> : c\'est une estimation.</div></div>' },
+    en: { act: _w.en[0], pause: _w.en[1], brk: 'Bleeding', none: 'No cycle landmark', est: 'Upcoming days are estimates: they sharpen with each confirmed cycle.<div style=\'text-align:left;max-width:292px;margin:10px auto 0;padding-top:9px;border-top:0.5px solid var(--border);\'><div style=\'font-weight:700;color:var(--navy);margin-bottom:5px;\'>How a cycle gets confirmed</div><div><strong>1.</strong> A cycle starts on <strong>day 1 of your period</strong>.</div><div><strong>2.</strong> It ends the day before your next period starts.</div><div><strong>3.</strong> When you log that new day 1, Venora counts the days in between.</div><div><strong>4.</strong> That number becomes a <strong>confirmed cycle</strong>.</div><div><strong>5.</strong> It only counts if it lasts <strong>18 to 45 days</strong> — outside that range it is almost always a missed entry.</div><div><strong>6.</strong> Every confirmed cycle adjusts your average, and your next dates.</div></div>' },
+    es: { act: _w.es[0], pause: _w.es[1], brk: 'Sangrado', none: 'Sin referencia de ciclo', est: 'Los días futuros son estimaciones: se afinan con cada ciclo confirmado.<div style=\'text-align:left;max-width:292px;margin:10px auto 0;padding-top:9px;border-top:0.5px solid var(--border);\'><div style=\'font-weight:700;color:var(--navy);margin-bottom:5px;\'>Cómo se confirma un ciclo</div><div><strong>1.</strong> Un ciclo empieza el <strong>1.er día de tu regla</strong>.</div><div><strong>2.</strong> Termina la víspera del 1.er día de la regla siguiente.</div><div><strong>3.</strong> Cuando anotas ese nuevo día 1, Venora cuenta los días entre ambos.</div><div><strong>4.</strong> Ese número es un <strong>ciclo confirmado</strong>.</div><div><strong>5.</strong> Solo cuenta si dura <strong>entre 18 y 45 días</strong>.</div><div><strong>6.</strong> Cada ciclo confirmado ajusta tu media y tus próximas fechas.</div></div>' }
   };
   var t = T[L] || T.fr;
   var dot = function (c, label) {
@@ -25982,7 +26064,7 @@ function renderCalLegend() {
     var cAct = 'color-mix(in srgb, var(--primary) 30%, #fff)';
     legend.innerHTML = dot(cAct, t.act)
       + (cont2 ? '' : dot('#E3E6EB', t.pause) + dot('var(--primary)', t.brk))
-      + (_hasSurpriseBleed() ? SURPRISE_LEGEND_HTML : '');
+      + (_hasSurpriseBleed() ? SURPRISE_LEGEND_THEMED : '');
     _setLegendNote(note);
   } else {
     // Implant, injection, stérilet hormonal sans règles : aucun rythme court à
@@ -25992,7 +26074,8 @@ function renderCalLegend() {
                en: ['Logged bleeding day', 'Other days have nothing scheduled: your method gives no cycle. Tap a date to log how you felt.'],
                es: ['Día de sangrado anotado', 'Los demás días no tienen nada previsto. Pulsa una fecha para anotar cómo te sentiste.'] };
     var nb = NB[L] || NB.fr;
-    legend.innerHTML = dot('var(--primary-dark, var(--primary))', nb[0]);
+    legend.innerHTML = dot('color-mix(in srgb, var(--primary) 30%, #fff)', ({ fr: 'Jour sans rien de prévu', en: 'Nothing scheduled', es: 'Día sin nada previsto' })[L])
+      + dot('var(--primary)', nb[0]);
     _setLegendNote(legendNote(nb[1]));
   }
   legend.style.display = '';
@@ -26352,9 +26435,10 @@ function toggleIrregularAcc() {
 // ══════════════════════════════════════════════════════════════
 // Confirmation simple, au style de l'app. Remplace window.confirm(), qui affiche
 // une boîte système grise hors charte et bloque le reste de la page sur iOS.
-function confirmVenora(title, body, okLabel, onConfirm, onClose) {
+function confirmVenora(title, body, okLabel, onConfirm, onClose, cancelLabel) {
   var L = state.language || 'fr';
   var CANCEL = { fr: 'Annuler', en: 'Cancel', es: 'Cancelar' };
+  if (cancelLabel) CANCEL = { fr: cancelLabel, en: cancelLabel, es: cancelLabel };
   var ov = document.createElement('div');
   ov.className = 'modal-overlay open';
   var done = false;
@@ -27861,6 +27945,21 @@ function toggleSwitch(e, el) {
     showToast(state.spmReminders
       ? ({ fr: '💜 Rappel prémenstruel activé', en: '💜 Premenstrual reminder on', es: '💜 Recordatorio premenstrual activado' })[L5]
       : ({ fr: 'Rappel prémenstruel désactivé', en: 'Premenstrual reminder off', es: 'Recordatorio premenstrual desactivado' })[L5]);
+    return;
+  }
+
+  if (el.id === 'phase-reminders-switch' || el.id === 'checkin-reminders-switch') {
+    var onP = el.classList.contains('on'), phaseP = el.id === 'phase-reminders-switch';
+    if (phaseP) state.phaseReminders = onP; else state.checkinReminders = onP;
+    saveState();
+    var LP = state.language || 'fr';
+    showToast(phaseP
+      ? (onP ? ({ fr: '🌿 Notifications de phase activées', en: '🌿 Phase notifications on', es: '🌿 Avisos de fase activados' })[LP]
+             : ({ fr: 'Notifications de phase désactivées', en: 'Phase notifications off', es: 'Avisos de fase desactivados' })[LP])
+      : (onP ? ({ fr: '🌙 Check-in du soir activé', en: '🌙 Evening check-in on', es: '🌙 Registro de la noche activado' })[LP]
+             : ({ fr: 'Check-in du soir désactivé', en: 'Evening check-in off', es: 'Registro de la noche desactivado' })[LP]));
+    // Le serveur lit ces deux choix dans profiles.misc : on les envoie tout de suite.
+    if (typeof pushProfileToCloud === 'function') pushProfileToCloud();
     return;
   }
 
@@ -29498,7 +29597,7 @@ async function proposerNotifications() {
         }
         resolve(!!granted);
       } catch (e) { console.warn('activation notifications', e); resolve(false); }
-    }, function () { if (!repondu) resolve(false); });
+    }, function () { if (!repondu) resolve(false); }, M.no);
   });
 }
 
