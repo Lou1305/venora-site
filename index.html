@@ -6310,27 +6310,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
   <!-- Le rond « ! » à droite du titre n'ouvrait rien : retiré (lot 58). -->
 </div>
 
-<div class="log-section">
-  <div class="log-section-label" data-i18n="mood_q">Comment te sens-tu ?</div>
-  <div class="mood-faces">
-    <button class="mood-face" onclick="selectMoodFace(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></button>
-    <button class="mood-face" onclick="selectMoodFace(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></button>
-    <button class="mood-face" onclick="selectMoodFace(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></button>
-    <button class="mood-face" onclick="selectMoodFace(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></button>
-    <button class="mood-face selected" onclick="selectMoodFace(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7 13a5 5 0 0 0 5 5 5 5 0 0 0 5-5h-10z"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></button>
-  </div>
-</div>
-
-<div class="log-section">
-  <div class="slider-container">
-    <span class="log-section-label" style="margin: 0;" data-i18n="intensity">Intensité</span>
-    <span class="slider-value" id="intensity-value">7/10</span>
-  </div>
-  <div class="slider-track" onclick="adjustSlider(event)">
-    <div class="slider-fill" id="slider-fill" style="width: 70%;"></div>
-    <div class="slider-thumb" id="slider-thumb" style="left: 70%;"></div>
-  </div>
-</div>
+<!-- Visages + intensité retirés (26/10, Lou) : une seule question d'humeur, les 4 chips. -->
 
 <!-- ÉNERGIE — le champ qui manquait. Avant ce lot, la « jauge d'énergie » de
      l'app et de la page partenaire affichait en réalité le score d'humeur :
@@ -6344,7 +6324,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
     <button class="opt-chip" data-mood="mood_motivated" onclick="selectLogMood(this)" data-i18n="mood_motivated">Motivée</button>
     <button class="opt-chip" data-mood="mood_tired" onclick="selectLogMood(this)" data-i18n="mood_tired">Fatiguée</button>
   </div>
-  <div style="font-size: 10.5px; color: var(--text-3); line-height: 1.45; margin-top: 8px;">C'est elle qui nourrit la répartition des humeurs dans Insights.</div>
+
 </div>
 
 <div class="log-section">
@@ -7104,6 +7084,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
       <div class="insight-card-title">TES SIGNAUX, SUIVIS EN CONTINU</div>
       <span class="pro-pill" style="font-size: 9px;">PRO</span>
     </div>
+    <p id="det-note" style="font-size: 11px; color: var(--text-3); margin: 4px 0 0; line-height: 1.45;">D'après tes tests santé (Bien-être › Santé) et tes check-ins. Un « — » veut dire que le test n'a pas encore été fait.</p>
     <div class="energy-phases" style="margin-top: 6px;">
       <div class="energy-phase-row">
         <div class="energy-phase-label">Signal SOPK</div>
@@ -7142,7 +7123,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <div class="premium-placeholder-title">Tes signaux, suivis en continu</div>
-      <div class="premium-placeholder-sub">Des indicateurs calculés à partir de tes check-ins, à montrer à un médecin. Ce n'est pas un diagnostic · Pro</div>
+      <div class="premium-placeholder-sub">Les résultats de tes tests santé et de tes check-ins, réunis au même endroit pour en parler à un médecin. Ce n'est pas un diagnostic · Pro</div>
     </div>
   </div>
 </div>
@@ -7212,7 +7193,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <div class="premium-placeholder-title">Évolution de ton humeur</div>
-      <div class="premium-placeholder-sub">Voir le détail par phase avec Plus</div>
+      <div class="premium-placeholder-sub" id="mood-ph-sub">Voir le détail par phase avec Plus</div>
     </div>
   </div>
 
@@ -7222,7 +7203,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
       <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--pink); font-weight: 600;" data-i18n="pattern_detected">PATTERN DÉTECTÉ</div>
     </div>
     <p style="font-family: 'Newsreader', Georgia, serif; font-weight: 400; font-size: 14px; line-height: 1.5; font-style: italic;" id="mood-pattern-text">Ton humeur est 2x meilleure pendant la phase folliculaire. Profite-en pour les décisions importantes.</p>
-    <p style="font-size: 10px; color: rgba(255,255,255,0.5); margin: 8px 0 0; font-style: normal;">Ton pattern s'affine avec tes check-ins (8+ répartis sur plusieurs phases).</p>
+    <p id="mood-pattern-note" style="font-size: 10px; color: rgba(255,255,255,0.5); margin: 8px 0 0; font-style: normal;">Ton pattern s'affine avec tes check-ins (8+ répartis sur plusieurs phases).</p>
   </div>
   <!-- Top symptômes : la fonction renderInsightsSymptoms() existait mais son conteneur
        avait disparu d'une refonte — la carte ne s'affichait donc jamais. -->
@@ -7340,7 +7321,7 @@ button { transition: transform 0.12s var(--ease-out), opacity 0.2s var(--ease-ou
         <div class="energy-phase-value" id="insight-hrv-val">—</div>
       </div>
     </div>
-    <p style="font-size: 11px; color: var(--text-3); margin: 12px 0 0; line-height: 1.5; padding-top: 10px; border-top: 0.5px solid var(--border);">Ta variabilité cardiaque chute en lutéale : c'est normal, planifie les efforts intenses plutôt en folliculaire/ovulation.</p>
+    <p id="insight-hrv-note" style="font-size: 11px; color: var(--text-3); margin: 12px 0 0; line-height: 1.5; padding-top: 10px; border-top: 0.5px solid var(--border);">Ta variabilité cardiaque chute en lutéale : c'est normal, planifie les efforts intenses plutôt en folliculaire/ovulation.</p>
     <div class="premium-placeholder">
       <div class="premium-placeholder-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -10055,7 +10036,7 @@ const I18N = {
     cycle_avg_duration: 'Average cycle length', regular: 'Regular',
     cycle_evolution: 'Last 6 months', cycle_symptoms: 'Most frequent symptoms',
     last_90_days: '90 days', months_short: 'Jan,Feb,Mar,Apr,May,Jun',
-    mood_distribution: 'Mood distribution', this_month: 'this month',
+    mood_distribution: 'Mood distribution', this_month: 'over your history',
     mood_by_phase: 'Mood by phase', pattern_detected: 'PATTERN DETECTED',
     mood_pattern: 'Your mood tends to dip 2-3 days before your period.',
     energy_avg: 'Average energy', trending_up: 'Trending up', energy_from_checkins: 'Based on your daily check-ins.',
@@ -10272,7 +10253,7 @@ const I18N = {
     cycle_avg_duration: 'Duración media del ciclo', regular: 'Regular',
     cycle_evolution: 'Últimos 6 meses', cycle_symptoms: 'Síntomas más frecuentes',
     last_90_days: '90 días', months_short: 'Ene,Feb,Mar,Abr,May,Jun',
-    mood_distribution: 'Distribución del ánimo', this_month: 'este mes',
+    mood_distribution: 'Distribución del ánimo', this_month: 'en tu historial',
     mood_by_phase: 'Ánimo por fase', pattern_detected: 'PATRÓN DETECTADO',
     mood_pattern: 'Tu ánimo tiende a bajar 2-3 días antes de tu regla.',
     energy_avg: 'Energía media', trending_up: 'Al alza', energy_from_checkins: 'Según tus check-ins diarios.',
@@ -10477,7 +10458,7 @@ function toggleClass(id, cls, on) { const el = $(id); if (el) el.classList.toggl
 // ════════════════════════════════════════════════════════════════
 // BUILD VERSION — change this on every deploy to verify what's loaded
 // ════════════════════════════════════════════════════════════════
-const BUILD_VERSION = 'v2026-10-25-lot120';
+const BUILD_VERSION = 'v2026-10-26-lot121';
 // ⚠️ AVANT TOUTE SOUMISSION APP STORE / PLAY : repasser cette constante à false.
 // Un sélecteur d'abonnement visible = contournement de paywall (Apple 3.1.1).
 // C'est la SEULE ligne à changer : tout le reste en découle.
@@ -10930,6 +10911,7 @@ async function pushProfileToCloud() {
         customSymptoms: state.customSymptoms || [], coachMemory: state.coachMemory || null,
         reportInfo: state.reportInfo || null, moodHistory: state.moodHistory || [],
         firstUseDate: state.firstUseDate || null, minorLocal: !!state.minorLocal, fifteenPromptShown: !!state.fifteenPromptShown,
+        pdfGeneratedOnce: !!state.pdfGeneratedOnce,
         pastPeriods: state.pastPeriods || [], cycleArchive: state.cycleArchive || [],
         wearableLogs: state.wearableLogs || {}
       }
@@ -11176,6 +11158,7 @@ async function pullFromCloud() {
           if (M.teenJournalPin && !state.teenJournalPin) state.teenJournalPin = M.teenJournalPin;
           if (typeof M.isTeenMode === 'boolean') state.isTeenMode = M.isTeenMode;
           if (typeof M.tdpmFlagged === 'boolean') state.tdpmFlagged = M.tdpmFlagged;
+          if (M.pdfGeneratedOnce === true) state.pdfGeneratedOnce = true;
           if (typeof M.endoTracking === 'boolean') state.endoTracking = M.endoTracking;
           if (typeof M.spmReminders !== 'undefined') state.spmReminders = M.spmReminders;
           if (typeof M.phaseReminders === 'boolean') state.phaseReminders = M.phaseReminders;
@@ -12398,10 +12381,25 @@ const VenoraCouple = (function () {
   // ---- owner: snapshot + notify
   var _vcSyncEnCours = false;
 
+  var _vcLiensVerifies = null;   // null = pas encore demandé cette session
+  async function _vcPartageAutorise() {
+    try {
+      if (state.couple && state.couple.shareConsented === true) return true;
+      if (_vcLiensVerifies !== null) return _vcLiensVerifies;
+      const { data, error } = await sb.from('partner_links').select('follower_id').eq('owner_id', currentUserId).limit(1);
+      if (error) { _vcLiensVerifies = null; return false; }
+      _vcLiensVerifies = !!(data && data.length);
+      if (_vcLiensVerifies) { state.couple = Object.assign({}, state.couple, { shareConsented: true }); if (typeof saveState === 'function') saveState(); }
+      return _vcLiensVerifies;
+    } catch (e) { return false; }
+  }
   async function syncSnapshot(opts) {
     opts = opts || {};
     const notify = opts.notify !== false;
     if (!sb || !currentUserId || !coupleIsUnlocked()) return;
+    // RGPD : rien ne part dans partner_snapshots tant qu'elle n'a pas généré un
+    // code (case de consentement cochée) ou qu'aucun partenaire n'est lié.
+    if (!(await _vcPartageAutorise())) return;
     // Au démarrage, refreshHome() et boot() appellent tous deux cette fonction.
     // Sans ce verrou, les deux lisent le même lastPhaseSent encore périmé et le
     // partenaire reçoit DEUX fois « elle entre en phase lutéale ».
@@ -12487,7 +12485,8 @@ const VenoraCouple = (function () {
       // On mémorise AVANT d'envoyer : si deux appels se croisaient malgré le
       // verrou (deux onglets, par exemple), le second verrait la phase à jour.
       if (state.couple) { state.couple.lastPhaseSent = phaseKey; if (typeof saveState === 'function') saveState(); }
-      if (notify) { try { await notifyPartner(); } catch (e) { console.warn('notify', e); } }
+      // (la notification « nouvelle phase » est envoyée par la fonction quotidienne
+      // daily-notifications — l'appel client doublait la notification)
       state.couple.lastPhaseSent = phaseKey;
       if (typeof saveState === 'function') saveState();
     }
@@ -12544,9 +12543,8 @@ const VenoraCouple = (function () {
   async function linkAndSubscribe(ownerId) {
     if (refuseAutoSuivi(ownerId)) throw new Error('self_link');
     if (sb && currentUserId) {
-      try {
-        await sb.from('partner_links').upsert({ follower_id: currentUserId, owner_id: ownerId }, { onConflict: 'follower_id,owner_id' });
-      } catch (e) { console.warn('partner_links upsert failed', e); }
+      const { error: _lkErr } = await sb.from('partner_links').upsert({ follower_id: currentUserId, owner_id: ownerId }, { onConflict: 'follower_id,owner_id' });
+      if (_lkErr) { console.warn('partner_links upsert failed', _lkErr); throw new Error('link_failed'); }
     }
     // partner_of était TOUJOURS null : le code censé supprimer l'abonnement du
     // partenaire filtre pourtant sur cette colonne. Résultat, se détacher ne
@@ -12557,17 +12555,19 @@ const VenoraCouple = (function () {
   // mode partenaire plein écran (non-utilisateur, ex: le copain)
   async function redeemInvite(code) {
     const ownerId = await redeemCode(code);
+    // Le rôle n'est enregistré qu'une fois le lien créé : sinon un code refusé
+    // (auto-suivi, réseau) laissait l'app en mode partenaire au prochain lancement.
+    await linkAndSubscribe(ownerId);
     state.couple = Object.assign({}, state.couple, { role: 'partner', ownerId: ownerId });
     if (typeof saveState === 'function') saveState();
-    await linkAndSubscribe(ownerId);
     return ownerId;
   }
   // suivi intégré (utilisatrice qui garde sa propre app)
   async function followCode(code) {
     const ownerId = await redeemCode(code);
+    await linkAndSubscribe(ownerId);
     state.couple = Object.assign({}, state.couple, { following: { ownerId: ownerId } });
     if (typeof saveState === 'function') saveState();
-    await linkAndSubscribe(ownerId);
     return ownerId;
   }
   // Le lien existe-t-il TOUJOURS ? Cette question ne se posait qu'au démarrage
@@ -12708,6 +12708,9 @@ const VenoraCouple = (function () {
       buttons[0].disabled = true;
       try {
         const code = await generateInvite();
+        state.couple = Object.assign({}, state.couple, { shareConsented: true, shareConsentedAt: new Date().toISOString() });
+        if (typeof saveState === 'function') saveState();
+        try { syncSnapshot({ notify: false }); } catch (eS) {}
         // Preuve du consentement : date, canal et périmètre exact partagé.
         try {
           if (typeof pushConsentEvent === 'function') pushConsentEvent('partner_share_consent', {
@@ -12809,6 +12812,8 @@ const VenoraCouple = (function () {
       try {
         const { data, error } = await sb.from('partner_links').delete().eq('owner_id', currentUserId).select();
         if (error) { if (typeof showToast === 'function') showToast(errLabel); yb.disabled = false; return; }
+        state.couple = Object.assign({}, state.couple, { shareConsented: false }); _vcLiensVerifies = false;
+        if (typeof saveState === 'function') saveState();
         // Le retrait du consentement se prouve autant que son recueil.
         try {
           if (typeof pushConsentEvent === 'function') pushConsentEvent('partner_share_revoked', { source: 'partner_hub', at: new Date().toISOString() });
@@ -13394,10 +13399,11 @@ const VenoraCouple = (function () {
         // téléphone, effacer ici supprimerait tout son suivi — définitivement,
         // pour un compte gratuit sans sauvegarde cloud.
         var _aSesDonnees = !!(state.startDate || (state.logs && Object.keys(state.logs).length)
-                              || (state.cycleHistory || []).length || (state.pastPeriods || []).length);
+                              || (state.cycleHistory || []).length || (state.pastPeriods || []).length
+                              || (state.pill && state.pill.active) || state.onboardingDone || state.email);
         if (!_aSesDonnees) localStorage.removeItem(STORAGE_KEY);
       } catch (e) {}
-      if (sb) { try { await sb.auth.signOut({ scope: 'global' }); } catch (e) {} }
+      if (sb) { try { await sb.auth.signOut({ scope: 'local' }); } catch (e) {} }
       try { sessionStorage.clear(); } catch (e) {}
       location.replace(location.pathname);
     });
@@ -13499,10 +13505,11 @@ const VenoraCouple = (function () {
           // Partenaire seul : on efface l'état local complet pour NE PAS retomber
           // sur l'app complète (onboardingDone) → retour à la page connexion/création.
           var _aSesDonnees2 = !!(state.startDate || (state.logs && Object.keys(state.logs).length)
-                                 || (state.cycleHistory || []).length || (state.pastPeriods || []).length);
+                                 || (state.cycleHistory || []).length || (state.pastPeriods || []).length
+                                 || (state.pill && state.pill.active) || state.onboardingDone || state.email);
           if (!_aSesDonnees2) localStorage.removeItem(STORAGE_KEY);
         } catch (e) {}
-        if (sb) { try { await sb.auth.signOut({ scope: 'global' }); } catch (e) {} }
+        if (sb) { try { await sb.auth.signOut({ scope: 'local' }); } catch (e) {} }
         try { sessionStorage.clear(); } catch (e) {}
         c.remove(); view.remove();
         // Retour à l'écran de connexion / création de compte
@@ -13660,9 +13667,9 @@ const VenoraCouple = (function () {
 
   function openFollow() {
     if (state.couple && state.couple.following && state.couple.following.ownerId) { showFollowedPartner(); return; }
-    // Suivre une partenaire depuis l'app (utilisatrice normale) = réservé Plus/Pro.
-    // Le pur partenaire (rôle "partner") passe par openPartnerLink et reste gratuit.
-    if (!coupleIsUnlocked()) { if (typeof openPaywall === 'function') openPaywall(); return; }
+    // Entrer un code est gratuit : c'est la propriétaire du cycle qui a Plus, et
+    // ce qu'elle partage dépend de SON palier (owner_tier dans le snapshot).
+    // Sans ça, une utilisatrice Free invitée n'avait aucun endroit où saisir le code.
     openFollowLink();
   }
   // ---- badge "non lu" sur la carte Mode couple
@@ -13943,12 +13950,36 @@ const VenoraFertility = (function () {
     // fertile » serait médicalement faux et dangereux (question réelle venue de TikTok).
     if (typeof contraBlocksOvulation === 'function' && contraBlocksOvulation()) {
       const Lp = L();
+      const _mF = (typeof contraMethod === 'function') ? contraMethod() : 'pilule';
+      if (_mF && _mF !== 'pilule') {
+        const NM = { implant: { fr: 'ton implant', en: 'your implant', es: 'tu implante' }, patch: { fr: 'ton patch', en: 'your patch', es: 'tu parche' },
+                     anneau: { fr: 'ton anneau', en: 'your ring', es: 'tu anillo' }, injection: { fr: 'ton injection', en: 'your injection', es: 'tu inyección' },
+                     sterilet: { fr: 'ton stérilet hormonal', en: 'your hormonal IUD', es: 'tu DIU hormonal' } };
+        const nm = (NM[_mF] || NM.implant)[Lp] || NM.implant.fr;
+        const Q = {
+          fr: '<div style="background:var(--lavender-bg);border:0.5px solid var(--border);border-radius:14px;padding:16px;font-size:13px;color:var(--text);line-height:1.6;">🛡️ <strong>Avec ' + nm + ', il n\'y a pas d\'ovulation à prédire.</strong><br>Cette contraception bloque l\'ovulation — c\'est son mode d\'action. Il n\'y a donc ni « jour d\'ovulation » ni fenêtre fertile tant qu\'elle est en place et à jour.<br><br><span style="font-size:12px;color:var(--text-2);">⚠️ Aucune méthode n\'est fiable à 100 % : une échéance dépassée ou certains médicaments peuvent réduire son efficacité. En cas de doute, parle-en à un pharmacien ou un médecin. Venora n\'est pas un moyen de contraception.</span></div>',
+          en: '<div style="background:var(--lavender-bg);border:0.5px solid var(--border);border-radius:14px;padding:16px;font-size:13px;color:var(--text);line-height:1.6;">🛡️ <strong>With ' + nm + ', there is no ovulation to predict.</strong><br>This contraception blocks ovulation — that\'s how it works. So there is no "ovulation day" or fertile window while it is in place and up to date.<br><br><span style="font-size:12px;color:var(--text-2);">⚠️ No method is 100% reliable: an overdue renewal or certain medicines can reduce its effect. If in doubt, talk to a pharmacist or doctor. Venora is not a contraceptive.</span></div>',
+          es: '<div style="background:var(--lavender-bg);border:0.5px solid var(--border);border-radius:14px;padding:16px;font-size:13px;color:var(--text);line-height:1.6;">🛡️ <strong>Con ' + nm + ', no hay ovulación que predecir.</strong><br>Este anticonceptivo bloquea la ovulación — así funciona. No hay «día de ovulación» ni ventana fértil mientras esté en su sitio y al día.<br><br><span style="font-size:12px;color:var(--text-2);">⚠️ Ningún método es 100 % fiable: un plazo vencido o ciertos medicamentos pueden reducir su efecto. Ante la duda, habla con un farmacéutico o médico. Venora no es un anticonceptivo.</span></div>'
+        };
+        return Q[Lp] || Q.fr;
+      }
       const P = {
         fr: '<div style="background:var(--lavender-bg);border:0.5px solid var(--border);border-radius:14px;padding:16px;font-size:13px;color:var(--text);line-height:1.6;">💊 <strong>Tu prends la pilule : il n\'y a pas d\'ovulation à prédire.</strong><br>La pilule bloque l\'ovulation — c\'est son mode d\'action. Il n\'y a donc ni « jour d\'ovulation » ni fenêtre fertile tant que tu la prends correctement.<br><br><span style="font-size:12px;color:var(--text-2);">⚠️ Aucune méthode n\'est fiable à 100 % : un oubli, des vomissements ou certains médicaments peuvent réduire son efficacité. En cas de doute après un rapport, parle-en vite à un pharmacien ou un médecin (la contraception d\'urgence existe). Venora n\'est pas un moyen de contraception.</span></div>',
         en: '<div style="background:var(--lavender-bg);border:0.5px solid var(--border);border-radius:14px;padding:16px;font-size:13px;color:var(--text);line-height:1.6;">💊 <strong>You\'re on the pill: there is no ovulation to predict.</strong><br>The pill blocks ovulation — that\'s how it works. So there is no "ovulation day" or fertile window while you take it correctly.<br><br><span style="font-size:12px;color:var(--text-2);">⚠️ No method is 100% reliable: a missed pill, vomiting or certain medicines can reduce its effect. If in doubt after sex, talk to a pharmacist or doctor quickly. Venora is not a contraceptive.</span></div>',
         es: '<div style="background:var(--lavender-bg);border:0.5px solid var(--border);border-radius:14px;padding:16px;font-size:13px;color:var(--text);line-height:1.6;">💊 <strong>Tomas la píldora: no hay ovulación que predecir.</strong><br>La píldora bloquea la ovulación — así funciona. No hay «día de ovulación» ni ventana fértil mientras la tomes correctamente.<br><br><span style="font-size:12px;color:var(--text-2);">⚠️ Ningún método es 100 % fiable: un olvido, vómitos o ciertos medicamentos pueden reducir su efecto. Ante la duda, habla pronto con un farmacéutico o médico. Venora no es un anticonceptivo.</span></div>'
       };
       return P[Lp] || P.fr;
+    }
+    // Pas de règles déclarées, avant les premières règles, stérilet hormonal sans
+    // règles, grossesse : il n'y a pas de cycle à prédire — on le dit, sans date.
+    if (typeof cyclePhasesMeaningful === 'function' && !cyclePhasesMeaningful()) {
+      const Ln = L();
+      const N = {
+        fr: '<p style="color:var(--text-2);font-size:13px;line-height:1.6;">Pas de cycle à prédire pour le moment : sans règles régulières, Venora ne peut pas estimer une ovulation. Si tes règles reviennent, note-les et cette vue se mettra en route.</p>',
+        en: '<p style="color:var(--text-2);font-size:13px;line-height:1.6;">No cycle to predict right now: without regular periods, Venora cannot estimate ovulation. If your periods return, log them and this view will start working.</p>',
+        es: '<p style="color:var(--text-2);font-size:13px;line-height:1.6;">No hay ciclo que predecir por ahora: sin reglas regulares, Venora no puede estimar la ovulación. Si vuelven, anótalas y esta vista se activará.</p>'
+      };
+      return N[Ln] || N.fr;
     }
     const c = calc();
     if (!c) return '<p style="color:var(--text-3);font-size:13px;">Renseigne ta date de règles et la durée de ton cycle pour activer cette vue.</p>';
@@ -14055,7 +14086,11 @@ const VenoraFertility = (function () {
   }
 
   function openFertility(fromPreg) {
-    let mode = (state.goal === 'avoid') ? 'avoid' : 'conceive';
+    // Enceinte : la fenêtre fertile n'a plus de sens, on ouvre le suivi grossesse.
+    try { if (!fromPreg && state.pregnancy && state.pregnancy.active && state.pregnancy.conception) { openPregnancy(); return; } } catch (e) {}
+    // Sous contraception (même sans blocage de l'ovulation, ex. stérilet au cuivre),
+    // l'écran s'ouvre en mode « éviter » : c'est ce qu'elle fait déjà.
+    let mode = (state.goal === 'avoid' || (state.pill && state.pill.active)) ? 'avoid' : 'conceive';
     const o = overlay('<div class="modal-handle"></div><h3 style="margin-top:26px;">🌱 ' + t('title') + '</h3><div id="vf-toggle" style="display:flex;gap:8px;margin:18px 0 18px;"></div><div id="vf-body"></div><div style="margin-top:8px;">' + '<button id="vf-preg" style="width:100%;padding:14px;border-radius:14px;border:1.5px solid color-mix(in srgb, var(--primary) 55%, transparent);background:transparent;color:var(--primary-dark, var(--primary));font-family:\'DM Sans\',sans-serif;font-size:15px;font-weight:700;cursor:pointer;position:relative;">🤰 ' + t('im_pregnant') + (unlocked('plus') ? '' : '<span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);">' + pill('plus') + '</span>') + '</button>' + btn(t('close'), false) + '</div>');
     function paint() {
       const tg = o.querySelector('#vf-toggle');
@@ -14528,10 +14563,11 @@ function _moodPatternByMoment(L) {
   var byKey = {};
   for (var k in logs) {
     var lg = logs[k];
-    if (!lg || typeof lg.moodFaceIdx !== 'number') continue;
-    total++; all.push(lg.moodFaceIdx);
+    var _val = vnValence(lg);
+    if (_val === null) continue;
+    total++; all.push(_val);
     var m = momentForDateKey(k, b.keys);
-    if (m) (byKey[m] = byKey[m] || []).push(lg.moodFaceIdx);
+    if (m) (byKey[m] = byKey[m] || []).push(_val);
   }
   if (total < 8) return null;
   var avgAll = all.reduce(function (a, c) { return a + c; }, 0) / all.length;
@@ -14572,10 +14608,10 @@ function computeMoodPattern() {
   let total = 0;
   for (const k in state.logs) {
     const lg = state.logs[k];
-    if (!lg || typeof lg.moodFaceIdx !== 'number') continue;
+    const valence = vnValence(lg); // 0..4, plus haut = meilleure humeur
+    if (valence === null) continue;
     const ph = bucketForDateKey(k, _bkp);
     if (!ph) continue;
-    const valence = lg.moodFaceIdx; // 0..4, plus haut = meilleure humeur (idx0=triste, idx4=heureux)
     sums[ph] = (sums[ph] || 0) + valence;
     counts[ph] = (counts[ph] || 0) + 1;
     total++;
@@ -14756,7 +14792,7 @@ function renderPersonalPrediction() {
     const l = logs[k]; if (!l) return;
     const p = (typeof phaseForDateKey === 'function') ? phaseForDateKey(k) : null;
     if (p !== phase) return;
-    if (typeof l.moodFaceIdx === 'number') moods.push(l.moodFaceIdx);
+    { const _v = vnValence(l); if (_v !== null) moods.push(_v); }
     if (typeof l.intensity === 'number') intens.push(l.intensity);
     (l.symptoms || []).forEach(function (x) { symp[x] = (symp[x] || 0) + 1; });
   });
@@ -14834,7 +14870,13 @@ function updateDetectionInsights() {
   const tb = $('det-tdpm-bar'), tv = $('det-tdpm-val'); const sp = ht.spm;
   if (tb && tv) {
     if (sp && sp.score && typeof sp.score.count === 'number') { const tot = sp.score.total || 30; tv.textContent = sp.score.count + '/' + tot; tb.style.width = Math.round(sp.score.count / tot * 100) + '%'; }
-    else { tv.textContent = '—'; tb.style.width = '0%'; }
+    else {
+      // Sans test, le signal passif tiré des check-ins (le même que le PDF médecin).
+      var _passTdpm = false;
+      try { _passTdpm = (typeof cyclePhasesMeaningful !== 'function' || cyclePhasesMeaningful()) && typeof checkTDPMSuspicion === 'function' && !!checkTDPMSuspicion(); } catch (e) {}
+      if (_passTdpm) { tv.textContent = 'Signal (check-ins)'; tb.style.width = '55%'; }
+      else { tv.textContent = '—'; tb.style.width = '0%'; }
+    }
   }
   const ab = $('det-ameno-bar'), av = $('det-ameno-val');
   if (ab && av) {
@@ -15321,9 +15363,14 @@ function renderInsightBucketRows() {
    ['ebp', 'energy-byphase-title', { fr: 'ÉNERGIE ', en: 'ENERGY ', es: 'ENERGÍA ' }],
    ['sbp', 'sleep-byphase-title', { fr: 'SOMMEIL ', en: 'SLEEP ', es: 'SUEÑO ' }]].forEach(function (c) {
     var host = document.getElementById(c[0] + '-rows');
+    // Énergie « par moment » : les casiers « énergie basse / haute » sont définis
+    // PAR l'énergie — afficher leur moyenne n'apprend rien. On garde saignement / digestion.
+    var _keep = (c[0] === 'ebp' && b.mode === 'moments')
+      ? b.keys.map(function (k, i) { return (k === 'low' || k === 'high') ? -1 : i; }).filter(function (i) { return i >= 0; })
+      : b.keys.map(function (k, i) { return i; });
     if (host && host.dataset.sig !== sig) {
       host.dataset.sig = sig;
-      host.innerHTML = b.keys.map(function (k, i) {
+      host.innerHTML = _keep.map(function (i) { var k = b.keys[i];
         return '<div class="energy-phase-row">'
           + '<div class="energy-phase-label">' + b.labels[i] + '</div>'
           + '<div class="energy-phase-bar"><div id="' + c[0] + '-' + k + '-bar" style="background:' + b.colors[i] + ';width:0%;"></div></div>'
@@ -15336,6 +15383,18 @@ function renderInsightBucketRows() {
       ttl.textContent = (c[2][state.language || 'fr'] || c[2].fr) + b.suffix;
     }
   });
+  // Textes figés qui parlaient de « phases » même sous contraception.
+  try {
+    var _mom = (b.mode === 'moments');
+    var _hn = document.getElementById('insight-hrv-note');
+    if (_hn) _hn.textContent = _mom
+      ? 'Sans cycle ovulatoire, ta variabilité cardiaque ne suit pas de phase : compare-la plutôt à tes nuits de sommeil et à ton énergie.'
+      : 'Ta variabilité cardiaque chute en lutéale : c\'est normal, planifie les efforts intenses plutôt en folliculaire/ovulation.';
+    var _pn = document.getElementById('mood-pattern-note');
+    if (_pn) _pn.textContent = _mom ? 'Ton pattern s\'affine avec tes check-ins (8+ répartis sur plusieurs moments).' : 'Ton pattern s\'affine avec tes check-ins (8+ répartis sur plusieurs phases).';
+    var _ms = document.getElementById('mood-ph-sub');
+    if (_ms) _ms.textContent = _mom ? 'Voir le détail par moment avec Plus' : 'Voir le détail par phase avec Plus';
+  } catch (e) {}
   // Le sommeil par moment se remplit ici : la carte existait mais restait vide.
   try {
     var wl = state.wearableLogs || {}, acc = {};
@@ -15470,8 +15529,26 @@ function goTo(name) {
   // « Suivre ma partenaire » rouvre la page telle qu'elle était (elle est en cache).
   try {
     document.querySelectorAll('.modal-overlay.open').forEach(function (m) {
-      if (m.querySelector('#vc-fsnap')) m.remove();
+      if (m.querySelector('#vc-fsnap')) { m.remove(); return; }
+      // Toute page ou feuille encore ouverte se ferme : l'onglet demandé doit
+      // s'afficher net, sans page mère rouverte derrière (vnParent).
+      try { delete m.dataset.vnParent; } catch (e2) {}
+      if (typeof vnFermerFeuille === 'function') vnFermerFeuille(m); else m.classList.remove('open');
     });
+    _vnDernierePage = { id: null, t: 0 };
+    var _cd = document.getElementById('content-detail'); if (_cd) _cd.classList.remove('active');
+    var _ad = document.getElementById('article-detail'); if (_ad) _ad.classList.remove('active');
+    var _tm = document.getElementById('test-modal'); if (_tm) _tm.classList.remove('active');
+    var _cpw = document.getElementById('vn-cpw-ov'); if (_cpw) _cpw.remove();
+  } catch (e) {}
+  // Brouillon du check-in : on le garde quand on change d'onglet sans enregistrer.
+  try {
+    var _sl = document.getElementById('screen-log');
+    if (_sl && _sl.classList.contains('active') && name !== 'log' && typeof logSelected !== 'undefined' && logSelected) {
+      var _ta = document.querySelector('#screen-log textarea');
+      var _vide = (typeof vnCheckinVide === 'function') ? vnCheckinVide() : true;
+      _logDraft = _vide ? null : { key: logKey(), sel: logSelected, notes: _ta ? _ta.value : (logSelected.notes || '') };
+    }
   } catch (e) {}
   // Les dépliants du bas du Calendrier se referment dès qu'on quitte l'écran :
   // en revenant, on retrouve une page propre et on les rouvre si besoin.
@@ -16551,7 +16628,7 @@ function renderGynCard() {
     if (left < 0) { status = 'À refaire — en retard'; color = '#DB2777'; }
     else if (left <= 60) { status = 'À prévoir bientôt'; color = '#B45309'; }
     else if (left <= 365) { status = 'Dans ' + Math.round(left / 30) + ' mois'; color = 'var(--text-3)'; }
-    else { status = 'Dans ' + (Math.round(left / 365 * 10) / 10) + ' an' + (left >= 730 ? 's' : ''); color = 'var(--text-3)'; }
+    else { status = 'Dans ' + String(Math.round(left / 365 * 10) / 10).replace('.', ',') + ' an' + (left >= 730 ? 's' : ''); color = 'var(--text-3)'; }
     return '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--border);">' +
       '<div style="flex:1;"><div style="font-size:13.5px;color:var(--navy);font-weight:600;">' + label + '</div>' +
       '<div style="font-size:11px;color:var(--text-3);line-height:1.4;">' + sub + '</div>' +
@@ -18743,6 +18820,7 @@ async function submitChangePassword() {
     if (m.indexOf('different') >= 0) set("Le nouveau mot de passe doit être différent de l'ancien.");
     else if (m.indexOf('weak') >= 0 || m.indexOf('at least') >= 0 || m.indexOf('short') >= 0) set('Mot de passe trop faible (6 caractères minimum).');
     else if (m.indexOf('session') >= 0 || m.indexOf('jwt') >= 0) set('Ta session a expiré. Reconnecte-toi puis réessaie.');
+    else if (m.indexOf('reauth') >= 0) set('Par sécurité, reconnecte-toi puis réessaie — ou passe par « Mot de passe oublié » sur l\'écran de connexion.');
     else set('Échec de la mise à jour. Réessaie.');
     return;
   }
@@ -20770,9 +20848,12 @@ function generateDoctorPDF() {
     const top = Object.entries(moodCount).sort((a,b)=>b[1]-a[1])[0];
     domMood = top[0]; domPct = Math.round(top[1]/moodTotal*100) + '% des jours';
   }
-  // intensité moyenne
-  const intens = keys.map(k => logs[k].intensity).filter(v => typeof v === 'number');
-  const avgIntens = intens.length ? (intens.reduce((a,b)=>a+b,0)/intens.length).toFixed(1) : null;
+  // énergie moyenne (ses check-ins)
+  let avgEnergy = null;
+  try {
+    const _en = keys.map(k => (typeof energyScoreForLog === 'function') ? energyScoreForLog(logs[k]) : null).filter(r => r && typeof r.score === 'number').map(r => r.score);
+    if (_en.length) avgEnergy = (Math.round(_en.reduce((a,b)=>a+b,0)/_en.length*10)/10).toString().replace('.', ',');
+  } catch (e) {}
 
   // symptômes par phase
   const byPhase = { menstrual:{}, folliculaire:{}, ovulatoire:{}, luteale:{} };
@@ -20781,10 +20862,16 @@ function generateDoctorPDF() {
     const all = [].concat(logs[k].symptoms || [], logs[k].customSymptoms || []);
     all.forEach(s => { if (s) byPhase[ph][s] = (byPhase[ph][s]||0)+1; });
   });
+  const PDF_SYM_LONG = { 'Ballonnem.': 'Ballonnements', 'Maux tête': 'Maux de tête', 'Sensibilité': 'Seins sensibles' };
+  const pdfSymLabel = function (sname) { return PDF_SYM_LONG[sname] || sname; };
   const phaseRows = ['menstrual','folliculaire','ovulatoire','luteale'].map(ph => {
-    const top = Object.entries(byPhase[ph]).sort((a,b)=>b[1]-a[1]).slice(0,4).map(e=>e[0]);
+    const top = Object.entries(byPhase[ph]).sort((a,b)=>b[1]-a[1]).slice(0,4).map(e => pdfSymLabel(e[0]) + ' (' + e[1] + ')');
     return [PDF_PHASE_LABEL[ph], top.length ? top.join(', ') : '—'];
   });
+  // Top symptômes toutes périodes confondues (utilisé quand la lecture par phase ne s'applique pas)
+  const _allSym = {};
+  keys.forEach(k => { [].concat(logs[k].symptoms || [], logs[k].customSymptoms || []).forEach(s => { if (s) _allSym[s] = (_allSym[s] || 0) + 1; }); });
+  const topSymRows = Object.entries(_allSym).sort((a,b)=>b[1]-a[1]).slice(0,8).map(e => [pdfSymLabel(e[0]), e[1] + ' jour' + (e[1] > 1 ? 's' : '')]);
 
   // conditions déclarées
   const condMap = { sopk:'SOPK', endo:'Endométriose', tdah:'TDAH', spm:'SPM' };
@@ -20793,13 +20880,24 @@ function generateDoctorPDF() {
     .map(k => condMap[k] + (hc[k]==='suspected' ? ' (suspecté)' : ''));
   const condStr = conds.length ? conds.join(', ') : 'Aucune déclarée';
 
-  // régularité
-  let regStr = sd ? 'Stable sur la période' : 'Date des règles non renseignée';
+  // régularité : calculée sur ses cycles enregistrés, comme la carte Insights
+  const _hist = (state.cycleHistory || []).filter(h => h && typeof h.len === 'number').slice(-12);
+  const _lens = _hist.map(h => h.len);
+  let avgCycleStr = cl + ' jours (réglage)';
+  let regStr = sd ? (_lens.length >= 2 ? '' : 'Moins de 2 cycles enregistrés') : 'Date des règles non renseignée';
+  if (_lens.length >= 2) {
+    const _avg = Math.round(_lens.reduce((a,b)=>a+b,0)/_lens.length);
+    const _var = Math.max.apply(null, _lens) - Math.min.apply(null, _lens);
+    avgCycleStr = _avg + ' jours (sur ' + _lens.length + ' cycles)';
+    regStr = (_var <= 4 ? 'Régulier' : _var <= 8 ? 'Variable' : 'Irrégulier') + ' — ' + Math.min.apply(null, _lens) + ' à ' + Math.max.apply(null, _lens) + ' j';
+  }
   try {
     const reg = (typeof checkCycleRegularity === 'function') ? checkCycleRegularity() : null;
     if (reg && reg.type === 'late') regStr = 'Retard de ' + reg.days + ' j vs cycle prévu';
     else if (reg && reg.type === 'unusual') regStr = 'Durée inhabituelle (' + reg.length + ' j)';
   } catch(e){}
+  const _plens = _hist.map(h => h.plen).filter(v => typeof v === 'number' && v > 0);
+  const periodDurStr = _plens.length ? (Math.round(_plens.reduce((a,b)=>a+b,0)/_plens.length) + ' jours') : (state.periodDuration ? state.periodDuration + ' jours' : 'Non renseigné');
 
   // TDPM (signal booléen réel)
   let tdpmStr = 'Aucun signal détecté';
@@ -20816,8 +20914,8 @@ function generateDoctorPDF() {
     let n = Math.max(1, Math.ceil((_ecoule + 1) / cl));
     const nexts = [];
     for (let i = 0; i < 3; i++) {
-      const nd = new Date(sd.getTime()); nd.setDate(nd.getDate() + cl * (n + i - 1));
-      if (nd > today) nexts.push(nd.getDate() + ' ' + PDF_MONTHS_FR[nd.getMonth()].slice(0,4) + '.');
+      const nd = new Date(sd.getTime()); nd.setDate(nd.getDate() + cl * (n + i));
+      if (nd > today) nexts.push(nd.getDate() + ' ' + VN_MOIS[nd.getMonth()]);
     }
     if (nexts.length) nextStr = nexts.join(' · ');
     // Aménorrhée : au-delà de la fenêtre habituelle, on n'annonce plus rien.
@@ -20848,7 +20946,7 @@ function generateDoctorPDF() {
   // notes
   const noteList = keys.filter(k => logs[k].notes && String(logs[k].notes).trim())
     .sort().reverse().slice(0, 4)
-    .map(k => { const d = parseLocalKey(k); return { date: d.getDate() + ' ' + PDF_MONTHS_FR[d.getMonth()].slice(0,4) + '.', txt: String(logs[k].notes).trim() }; });
+    .map(k => { const d = parseLocalKey(k); return { date: d.getDate() + ' ' + VN_MOIS[d.getMonth()], txt: String(logs[k].notes).trim() }; });
 
   // ---- helpers de dessin ----
   function setFill(c){ doc.setFillColor(c[0],c[1],c[2]); }
@@ -21004,11 +21102,14 @@ function generateDoctorPDF() {
   idRows.push(['Période analysée', periodStr]);
   idRows.push(['Généré le', pdfFmtDate(new Date())]);
   const idRowH = 6.4;
-  const idH = 7 + idRows.length * idRowH;
+  const _idLines = idRows.map(r => doc.splitTextToSize(String(r[1]), CW - 60));
+  const _idHs = _idLines.map(l => idRowH + Math.max(0, l.length - 1) * 4.2);
+  const idH = 7 + _idHs.reduce((a,b)=>a+b,0);
   setFill(CREAM); setDraw(BORDER); doc.setLineWidth(0.3);
   doc.roundedRect(M, y, CW, idH, 1.5, 1.5, 'FD');
+  let _idY = y + 7;
   idRows.forEach((r, i) => {
-    const ry = y + 7 + i * idRowH;
+    const ry = _idY; _idY += _idHs[i];
     setText(GRAY3); doc.setFont('helvetica','normal'); doc.setFontSize(7.5); doc.setCharSpace(0.3);
     doc.text(r[0].toUpperCase(), M + 7, ry); doc.setCharSpace(0);
     setText(NAVY); doc.setFont('helvetica','bold'); doc.setFontSize(9.5);
@@ -21024,6 +21125,32 @@ function generateDoctorPDF() {
   const _pdfPreg = !!(state.pregnancy && state.pregnancy.active && state.pregnancy.conception);
   const _pdfNoCycle = ((typeof cyclePhasesMeaningful === 'function') && !cyclePhasesMeaningful())
     || ((typeof noPeriodsMode === 'function') && noPeriodsMode());
+  const _pdfPreMen = !!(state.preMenarche && !state.startDate);
+  const _pdfNoPer = (typeof noPeriodsMode === 'function') && noPeriodsMode();
+  const _pdfContra = !!(state.pill && state.pill.active) && !_pdfNoPer && !_pdfPreMen;
+  const _pdfPack = (typeof contraHasPackRhythm === 'function') && contraHasPackRhythm();
+  // Pourquoi il n'y a pas de cycle à décrire — on l'écrit tel que la patiente l'a déclaré.
+  const noCycleStr = _pdfPreMen ? 'Pas encore de cycle — avant les premières règles'
+    : _pdfNoPer ? 'Pas de règles — déclaré par la patiente'
+    : _pdfContra ? 'Pas de cycle ovulatoire — contraception hormonale en place'
+    : 'Pas de cycle ovulatoire';
+  const noCycleShort = _pdfPreMen ? 'avant les premières règles' : _pdfNoPer ? 'pas de règles déclarées' : 'contraception hormonale';
+  // Sous plaquette / patch / anneau : la date utile est celle de la prochaine pause.
+  let nextBreakStr = null;
+  if (_pdfPack) {
+    try {
+      const _t0 = new Date(); _t0.setHours(0, 0, 0, 0);
+      const _ps = new Date(state.pill.packStart + 'T00:00:00');
+      const _plen = (state.pill.packDays || 21) + ((state.pill.continuous || state.pill.breakDays === 0) ? 0 : (state.pill.breakDays || 0));
+      for (let _i = 0; _i < 400; _i++) {
+        const _d = new Date(_ps.getTime()); _d.setDate(_d.getDate() + _i);
+        if (_d <= _t0) continue;
+        const _dayNo = ((_i % _plen) + _plen) % _plen + 1;
+        if (typeof pillDayClass === 'function' && pillDayClass(_dayNo) === 'pack-break') { nextBreakStr = pdfFmtDate(_d); break; }
+      }
+    } catch (e) {}
+  }
+  const _bpShowPre = _pdfContra && (typeof cyclePhasesMeaningful === 'function') && !cyclePhasesMeaningful() && !_pdfPack;
   // Grossesse en cours : annoncer « prochaines règles le 12 octobre » et « retard de
   // 122 jours » dans un document remis au médecin n'a aucun sens.
   const cycleRows = _pdfPreg
@@ -21034,21 +21161,34 @@ function generateDoctorPDF() {
       ]
     : _pdfNoCycle
     ? [
-        ['Cycle', 'Pas de cycle ovulatoire — contraception hormonale en place'],
-        ['Dernier saignement noté', sd ? pdfFmtDate(sd) : 'Aucun'],
-        ['Prochaines règles prévues', nextStr],
-        ['Suivi', 'Voir « Profil de saignement » ci-dessous']
-      ]
+        ['Cycle', noCycleStr],
+        ['Dernier saignement noté', sd ? pdfFmtDate(sd) : 'Aucun']
+      ].concat(
+        _pdfPack ? [['Prochain saignement de pause', nextBreakStr || '—']] : [],
+        (_pdfPack && (state.pill.method || 'pilule') === 'pilule') ? [['Suivi', 'Voir « Contraception orale » ci-dessous']]
+          : _bpShowPre ? [['Suivi', 'Voir « Profil de saignement » ci-dessous']] : []
+      )
     : [
-        ['Durée moyenne du cycle', cl + ' jours'],
-        ['Durée moyenne des règles', (state.periodDuration || 5) + ' jours'],
+        ['Durée moyenne du cycle', avgCycleStr],
+        ['Durée moyenne des règles', periodDurStr],
         ['Dernières règles', sd ? pdfFmtDate(sd) : 'Non renseigné'],
         ['Phase actuelle', phaseNow],
         ['Prochaines règles prévues', nextStr],
-        ['Régularité', regStr]
+        ['Régularité', regStr || '—']
       ];
   sectionTitle('Aperçu du cycle', kvH(cycleRows));
   kvTable(cycleRows);
+  // Historique des cycles : ce que le médecin demande en premier.
+  try {
+    if (!_pdfPreg && !_pdfNoCycle && _hist.length) {
+      const _hRows = _hist.slice().reverse().slice(0, 12).map(function (h) {
+        const d = parseLocalKey(String(h.date).slice(0, 10));
+        return [pdfFmtDate(d), h.len + ' jours' + (typeof h.plen === 'number' && h.plen > 0 ? ' · règles ' + h.plen + ' j' : '')];
+      });
+      sectionTitle('Derniers cycles enregistrés (début · durée)', kvH(_hRows));
+      kvTable(_hRows);
+    }
+  } catch (e) {}
 
   // Calendrier réinitialisé une ou plusieurs fois : ces périodes ne servent plus aux
   // prédictions (le rythme a changé) mais restent une information médicale utile.
@@ -21194,7 +21334,7 @@ function generateDoctorPDF() {
 
   // ---- Fertilité / Grossesse (info de base = toujours ; prévision 6 mois = Pro) ----
   {
-    const goalStr = (state.goal === 'avoid') ? 'Éviter une grossesse' : 'Concevoir';
+    const goalStr = ({ understand: 'Comprendre mon cycle', conceive: 'Concevoir', avoid: 'Éviter une grossesse', menopause: 'Périménopause' })[state.goal] || 'Comprendre mon cycle';
     const isPreg = !!(state.pregnancy && state.pregnancy.active && state.pregnancy.conception);
     if (isPreg) {
       const conc = new Date(state.pregnancy.conception); conc.setHours(0, 0, 0, 0);
@@ -21216,7 +21356,7 @@ function generateDoctorPDF() {
       const wins = _pill ? [] : fertileWindows(sd, cl, 6);
       const fertRows = [['Objectif', goalStr]];
       if (_pill) {
-        fertRows.push(['Fenêtre fertile', 'Sans objet — contraception hormonale (pas d\'ovulation)']);
+        fertRows.push(['Fenêtre fertile', 'Sans objet — ' + noCycleShort + (_pdfContra ? ' (pas d\'ovulation)' : '')]);
       } else if (wins.length) {
         fertRows.push(['Prochaine ovulation estimée', pdfFmtDate(wins[0].ovul)]);
         fertRows.push(['Fenêtre fertile actuelle/à venir', pdfFmtDateShort(wins[0].start) + ' - ' + pdfFmtDateShort(wins[0].end)]);
@@ -21226,7 +21366,7 @@ function generateDoctorPDF() {
       sectionTitle('Fertilité', kvH(fertRows));
       kvTable(fertRows);
       // Prévision des fenêtres fertiles sur 6 mois (Pro)
-      if (wins.length > 1 && typeof isProTier === 'function' && isProTier()) {
+      if (wins.length > 1 && state.goal === 'conceive' && typeof isProTier === 'function' && isProTier()) {
         const fRows = wins.map(function (w, i) {
           return ['Cycle ' + (i + 1), pdfFmtDateShort(w.start) + ' - ' + pdfFmtDateShort(w.end) + '  (ovul. ' + pdfFmtDateShort(w.ovul) + ')'];
         });
@@ -21269,8 +21409,8 @@ function generateDoctorPDF() {
       });
       if (medDates.length && medDates.length <= 10) {
         medDates.forEach(function (k) {
-          const fl = logs[k].flow ? (FLOWLBL[logs[k].flow] || logs[k].flow) : 'pas de regles';
-          extraRows.push([fmtD(k), fl + ' - ' + logs[k].meds.join(', ')]);
+          const fl = logs[k].flow ? ('flux ' + String(FLOWLBL[logs[k].flow] || logs[k].flow).toLowerCase()) : 'pas de règles';
+          extraRows.push(['Médicament le ' + fmtD(k), logs[k].meds.join(', ') + ' (' + fl + ')']);
         });
       } else if (medDates.length) {
         // « Ibuprofène (11j) » : personne ne sait si 11 est un dosage, un nombre
@@ -21510,18 +21650,21 @@ function generateDoctorPDF() {
 
   // bien-être
   const cards = [['Humeur dominante', domMood, domPct]];
-  if (avgIntens) cards.push(['Intensité ressentie', avgIntens + '/10', 'moyenne']);
+  if (avgEnergy) cards.push(['Énergie moyenne', avgEnergy + '/10', 'check-ins']);
   cards.push(['Jours suivis', String(keys.length), 'check-ins']);
-  if (state.hasWearable) cards.push(['Montre', state.wearableName || 'Connectée', 'connectée']);
+  if (state.hasWearable && Object.keys(state.wearableLogs || {}).length) cards.push(['Montre', state.wearableName || 'Connectée', Object.keys(state.wearableLogs || {}).length + ' nuits']);
   sectionTitle('Bien-être — moyennes sur la période', 26);
   wellbeing(cards);
 
   // symptômes par phase
-  sectionTitle('Symptômes les plus fréquents par phase', (sd && !_pdfNoCycle) ? phaseHeight(phaseRows) : 12);
   if (_pdfNoCycle) {
-    setText(GRAY); doc.setFont('helvetica','italic'); doc.setFontSize(9);
-    doc.text(doc.splitTextToSize('Pas de cycle ovulatoire (contraception hormonale) : la lecture par phase ne s\'applique pas. Voir la liste des symptômes ci-dessus.', CW), M, y + 2);
-    y += 8;
+    if (topSymRows.length) {
+      sectionTitle('Symptômes les plus fréquents (' + noCycleShort + ' : lecture par phase sans objet)', kvH(topSymRows));
+      kvTable(topSymRows);
+    }
+  } else sectionTitle('Symptômes les plus fréquents par phase', sd ? phaseHeight(phaseRows) : 12);
+  if (_pdfNoCycle) {
+    // rien de plus : le tableau global ci-dessus suffit
   } else if (!sd) {
     setText(GRAY); doc.setFont('helvetica','italic'); doc.setFontSize(9);
     doc.text(doc.splitTextToSize('Renseigne la date de tes dernières règles pour obtenir le détail par phase.', CW), M, y + 2);
@@ -21531,13 +21674,31 @@ function generateDoctorPDF() {
   }
 
 
+  // montre connectée : moyennes sur la période
+  try {
+    const _wl = state.wearableLogs || {};
+    const _wk = Object.keys(_wl).filter(k => _wl[k] && (!_pdfMin || k >= _pdfMin));
+    if (_wk.length) {
+      const _avgW = function (f) { const a = _wk.map(k => _wl[k][f]).filter(v => typeof v === 'number' && v > 0); return a.length ? a.reduce((x,y)=>x+y,0)/a.length : null; };
+      const _wRows = [['Nuits mesurées', String(_wk.length)]];
+      const _sl = _avgW('sleep'); if (_sl) { const _h = Math.floor(_sl), _mn = Math.round((_sl - _h) * 60); _wRows.push(['Sommeil moyen', _h + 'h' + (_mn < 10 ? '0' + _mn : _mn) + ' par nuit']); }
+      const _hr = _avgW('restingHr'); if (_hr) _wRows.push(['Fréquence cardiaque au repos', Math.round(_hr) + ' bpm']);
+      const _hv = _avgW('hrv'); if (_hv) _wRows.push(['Variabilité cardiaque (VFC)', Math.round(_hv) + ' ms']);
+      const _tp = _avgW('temp'); if (_tp) _wRows.push(['Température moyenne', (Math.round(_tp * 100) / 100).toString().replace('.', ',') + ' °C']);
+      if (_wRows.length > 1) {
+        sectionTitle('Montre connectée — moyennes sur la période', kvH(_wRows));
+        kvTable(_wRows);
+      }
+    }
+  } catch (e) {}
+
   // indicateurs
   // Règle de Lou : on ne marque QUE ce qu'on voit. « Aucun signal détecté »,
   // « Aucune déclarée » n'apprennent rien au médecin et alourdissent le document.
   const indRows = [];
-  if (tdpmStr && tdpmStr.indexOf('Aucun') !== 0) indRows.push(['Signal TDPM (analyse passive)', tdpmStr]);
+  if (!_pdfNoCycle && !_pdfPreg && tdpmStr && tdpmStr.indexOf('Aucun') !== 0) indRows.push(['Signal TDPM (analyse passive)', tdpmStr]);
   if (condStr && condStr.indexOf('Aucune') !== 0) indRows.push(['Conditions déjà déclarées', condStr]);
-  if (regStr && regStr.indexOf('Date des règles') !== 0 && regStr !== 'Stable sur la période') indRows.push(['Régularité des cycles', regStr]);
+  if (!_pdfNoCycle && !_pdfPreg && regStr && (regStr.indexOf('Retard') === 0 || regStr.indexOf('Durée inhabituelle') === 0 || regStr.indexOf('Irrégulier') === 0)) indRows.push(['Régularité des cycles', regStr]);
   if (indRows.length) {
     sectionTitle('Indicateurs à discuter en consultation', kvH(indRows));
     kvTable(indRows);
@@ -21886,9 +22047,11 @@ async function runPdfGeneration() {
   if (!ok) return; // génération échouée → on ne consomme pas le quota
   if (!isProTier()) {
     state.pdfExportsUsed++;
-    saveState();
     updatePDFExportStatus();
   }
+  state.pdfGeneratedOnce = true;   // badge « Dossier béton » — le compteur mensuel est remis à zéro, pas ce drapeau
+  saveState();
+  try { if (typeof checkBadges === 'function') checkBadges(); } catch (e) {}
   const msg = { fr: '📄 Export PDF généré', en: '📄 PDF export generated', es: '📄 Exportación PDF generada' };
   showToast(msg[state.language]);
 }
@@ -23150,6 +23313,36 @@ function refreshHome() {
     if (pclHome) pclHome.textContent = t('phase_current');
   }
 
+  // ── Grossesse en cours : ni phase, ni « règles commencées », ni contraception ──
+  try {
+    if (state.pregnancy && state.pregnancy.active && state.pregnancy.conception) {
+      const _conc = new Date(state.pregnancy.conception); _conc.setHours(0, 0, 0, 0);
+      const _tdy = new Date(); _tdy.setHours(0, 0, 0, 0);
+      const _pd = Math.max(0, Math.floor((_tdy - _conc) / 86400000));
+      const _wk = Math.min(40, Math.floor(_pd / 7));
+      const _due = new Date(_conc); _due.setDate(_due.getDate() + 266);
+      const _MO = (typeof VN_MOIS !== 'undefined') ? VN_MOIS : ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+      if (pclHome) pclHome.textContent = 'Grossesse';
+      setText('phase-name-display', 'Semaine ' + _wk + ' 🤰');
+      setText('ring-current-day', 'S' + _wk);
+      setText('current-day-display', _wk);
+      setText('cycle-len-display', 40);
+      setText('ring-cycle-len', 'sem.');
+      var _pdl = document.querySelector('.phase-card .phase-day');
+      if (_pdl) _pdl.textContent = 'Terme estimé le ' + _due.getDate() + ' ' + _MO[_due.getMonth()] + ' ' + _due.getFullYear();
+      if (ring) {
+        const circP = 2 * Math.PI * 42;
+        ring.setAttribute('stroke-dasharray', (circP * Math.min(_wk / 40, 1)) + ' ' + circP);
+        ring.style.stroke = 'var(--primary)';
+      }
+      if (pbHome) pbHome.style.display = 'none';
+      if (rcHome) rcHome.style.display = 'none';
+      var _rpw = document.getElementById('retro-period-wrap'); if (_rpw) _rpw.style.display = 'none';
+    } else {
+      var _rpw2 = document.getElementById('retro-period-wrap'); if (_rpw2) _rpw2.style.display = '';
+    }
+  } catch (e) {}
+
   // ── Avant les premières règles : pas de fausse phase « Jour 1 » ──
   if (state.preMenarche && !state.startDate) {
     if (pclHome) pclHome.textContent = 'En douceur';
@@ -23213,6 +23406,15 @@ function refreshHome() {
 }
 
 const MOOD_KEYS = ['mood_good', 'mood_calm', 'mood_motivated', 'mood_tired'];
+// Valence 0..4 d'un check-in : d'après les 4 humeurs (fatiguée 1, calme 3,
+// bien 3, motivée 4) ; les anciens check-ins aux visages gardent leur valeur.
+var VN_VALENCE = { mood_tired: 1, mood_calm: 3, mood_good: 3, mood_motivated: 4 };
+function vnValence(lg) {
+  if (!lg) return null;
+  if (lg.moodKey && (lg.moodKey in VN_VALENCE)) return VN_VALENCE[lg.moodKey];
+  if (typeof lg.moodFaceIdx === 'number') return lg.moodFaceIdx;
+  return null;
+}
 function selectMood(btn, label) {
   btn.parentNode.querySelectorAll('.mood-option').forEach(s => s.classList.remove('selected'));
   btn.classList.add('selected');
@@ -23361,6 +23563,7 @@ function paintLogExtras() {
 
 let logEditKey = null; // null = aujourd'hui ; sinon 'YYYY-MM-DD' (saisie rétroactive)
 function logKey() { return logEditKey || todayKey(); }
+var _logDraft = null;   // sélection non enregistrée, gardée quand on change d'onglet
 function openRetroLog(k) {
   logEditKey = (k === todayKey()) ? null : k;
   goTo('log');
@@ -23379,6 +23582,8 @@ function loadLogForToday() {
   }
   if (backBtn) backBtn.onclick = function () { const retro = !!logEditKey; logEditKey = null; goTo(retro ? 'calendar' : 'home'); };
   const todayLog = state.logs[logKey()];
+  const _draft = (_logDraft && _logDraft.key === logKey()) ? _logDraft : null;
+  _logDraft = null;
   setTimeout(function () {
     if (typeof updateSymAccCount === 'function') updateSymAccCount();
     // Ouvrir l'accordéon symptômes si des symptômes sont déjà notés ce jour
@@ -23388,7 +23593,10 @@ function loadLogForToday() {
     if (body) body.style.display = n > 0 ? 'block' : 'none';
     if (btn) btn.classList.toggle('open', n > 0);
   }, 0);
-  if (!todayLog) {
+  if (_draft) {
+    logSelected = _draft.sel;
+    logSelected.notes = _draft.notes || '';
+  } else if (!todayLog) {
     // Reset
     logSelected = { moodFaceIdx: 4, intensity: 7, energy: null, symptoms: new Set(), customSymptoms: [], notes: '', flow: null, meds: [], sex: null, sexFlags: [], libido: null, emergencyContraception: false };
   } else {
@@ -23411,13 +23619,9 @@ function loadLogForToday() {
   paintLogExtras();
   
   // Apply to UI
-  const moodFaces = document.querySelectorAll('.mood-face');
-  moodFaces.forEach((f, i) => f.classList.toggle('selected', i === logSelected.moodFaceIdx));
+  // (visages retirés du check-in)
   
-  const pct = (logSelected.intensity / 10) * 100;
-  const fill = $('slider-fill'); if (fill) fill.style.width = pct + '%';
-  const thumb = $('slider-thumb'); if (thumb) thumb.style.left = pct + '%';
-  setText('intensity-value', logSelected.intensity + '/10');
+  // (curseur d'intensité retiré du check-in)
   document.querySelectorAll('#energy-row .opt-chip').forEach(function (b) {
     b.classList.toggle('on', logSelected.energy === parseInt(b.dataset.energy, 10));
   });
@@ -23764,11 +23968,12 @@ function removeCustomSymptom(name) {
   function montrer() { setTimeout(majFab, 0); }
   function cacher() { var f = document.getElementById('log-fab'); if (f) f.style.display = 'none'; }
   // Rien de coché (humeur et intensité par défaut, rien d'autre) → pas de flèche.
+  window.vnCheckinVide = function () { return checkinVide(); };
   function checkinVide() {
     try {
       var L = logSelected; if (!L) return true;
       var notes = document.querySelector('#screen-log textarea'); var txt = notes ? notes.value.trim() : (L.notes || '');
-      return (L.moodFaceIdx === 4 && L.intensity === 7 && L.energy == null && !(L.symptoms && L.symptoms.size)
+      return (!L.moodKey && L.energy == null && !(L.symptoms && L.symptoms.size)
         && !(L.customSymptoms && L.customSymptoms.length) && !txt && !L.flow && !(L.meds && L.meds.length)
         && !L.sex && !L.libido && !L.emergencyContraception && !L.moodKey);
     } catch (e) { return false; }
@@ -23813,9 +24018,13 @@ function saveLog() {
   setTimeout(function () { _vnBusyKeys.savelog = false; }, 1200);
   const notes = document.querySelector('#screen-log textarea');
   logSelected.notes = notes ? notes.value : '';
+  _logDraft = null;
   
-  // Map moodFaceIdx to a label for home display consistency
+  // L'humeur vient des 4 chips ; moodFaceIdx (ancienne échelle 0..4) est dérivé
+  // pour les écrans et la base qui la lisent encore.
   const moodLabels = ['Mal', 'Pas top', 'Neutre', 'Plutôt bien', 'Excellent'];
+  logSelected.moodFaceIdx = (logSelected.moodKey && (logSelected.moodKey in VN_VALENCE)) ? VN_VALENCE[logSelected.moodKey] : null;
+  logSelected.intensity = null;
   
   const k = logKey();
   // On garde ce que d'autres écrans ont déjà écrit pour ce jour (douleur endo…).
@@ -23823,7 +24032,7 @@ function saveLog() {
   state.logs[k] = {
     pain: _dejaLa.pain || null,
     moodFaceIdx: logSelected.moodFaceIdx,
-    mood: logSelected.moodKey ? t(logSelected.moodKey) : (moodLabels[logSelected.moodFaceIdx] || 'Neutre'),
+    mood: logSelected.moodKey ? t(logSelected.moodKey) : null,
     moodKey: logSelected.moodKey || null,
     intensity: logSelected.intensity,
     energy: (typeof logSelected.energy === 'number') ? logSelected.energy : null,
@@ -24092,7 +24301,7 @@ function _flowDays() { let n = 0; Object.keys(state.logs || {}).forEach(k => { i
 
 const BADGES = [
   // ── FIDÉLITÉ (lune) : l'ancienneté ne se perd JAMAIS ──
-  { id: 'fid_1j',  fam: 'moon', tier: 'quartz',    label: 'Bienvenue',        desc: '1 jour avec Venora',   c: () => _accountAgeDays() >= 0,    p: () => [Math.min(1, _accountAgeDays() + 1), 1] },
+  { id: 'fid_1j',  fam: 'moon', tier: 'quartz',    label: 'Bienvenue',        desc: '1 jour avec Venora',   c: () => _accountAgeDays() >= 1,    p: () => [Math.min(1, _accountAgeDays() + 1), 1] },
   { id: 'fid_7j',  fam: 'moon', tier: 'quartz',    label: 'Première lune',    desc: '7 jours avec Venora',  c: () => _accountAgeDays() >= 7,    p: () => [_accountAgeDays(), 7] },
   { id: 'fid_1m',  fam: 'moon', tier: 'argent',    label: 'Un mois ensemble', desc: '1 mois avec Venora',   c: () => _accountAgeDays() >= 30,   p: () => [_accountAgeDays(), 30] },
   { id: 'fid_3m',  fam: 'moon', tier: 'argent',    label: 'Une saison',       desc: '3 mois avec Venora',   c: () => _accountAgeDays() >= 90,   p: () => [_accountAgeDays(), 90] },
@@ -24129,10 +24338,10 @@ const BADGES = [
   { id: 'reader',       fam: 'heart', tier: 'quartz',    label: 'Curieuse',         desc: '3 articles lus',               c: () => (state.articlesRead || []).length >= 3,  p: () => [(state.articlesRead || []).length, 3] },
   { id: 'erudite',      fam: 'heart', tier: 'argent',    label: 'Érudite',          desc: '10 articles lus',              c: () => (state.articlesRead || []).length >= 10, p: () => [(state.articlesRead || []).length, 10] },
   { id: 'a_lecoute',    fam: 'heart', tier: 'argent',    label: 'À l\'écoute',      desc: 'Flux noté sur 5 jours de règles', c: () => _flowDays() >= 5, p: () => [_flowDays(), 5] },
-  { id: 'confidente',   fam: 'heart', tier: 'argent',    label: 'Confidente',       desc: '50 messages au coach',         c: () => (state.chatHistory || []).length >= 50, p: () => [(state.chatHistory || []).length, 50] },
-  { id: 'pdf_first',    fam: 'heart', tier: 'or',        label: 'Dossier béton',    desc: 'Ton 1er rapport médecin généré', c: () => (state.pdfExportsUsed || 0) >= 1 },
+  { id: 'confidente',   fam: 'heart', tier: 'argent',    label: 'Confidente',       desc: '50 messages envoyés au coach', c: () => (state.chatHistory || []).filter(m => m && m.role === 'user').length >= 50, p: () => [(state.chatHistory || []).filter(m => m && m.role === 'user').length, 50] },
+  { id: 'pdf_first',    fam: 'heart', tier: 'or',        label: 'Dossier béton',    desc: 'Ton 1er rapport médecin généré', c: () => state.pdfGeneratedOnce === true || (state.pdfExportsUsed || 0) >= 1 },
   { id: 'voice',        fam: 'heart', tier: 'or',        label: 'Voix entendue',    desc: '10 douleurs documentées',      c: () => _painCount() >= 10, p: () => [_painCount(), 10] },
-  { id: 'know_thyself', fam: 'heart', tier: 'or',        label: 'Je me connais',    desc: 'Les 5 tests santé faits',      c: () => Object.keys(state.healthTests || {}).length >= 5, p: () => [Object.keys(state.healthTests || {}).length, 5] },
+  { id: 'know_thyself', fam: 'heart', tier: 'or',        label: 'Je me connais',    desc: '5 tests santé faits',          c: () => Object.keys(state.healthTests || {}).length >= 5, p: () => [Object.keys(state.healthTests || {}).length, 5] },
   { id: 'fondatrice',   fam: 'heart', tier: 'amethyste', label: 'Fondatrice',       desc: 'Là depuis la bêta — merci, pour toujours 💜', c: () => !!state.acceptedTermsDate && state.acceptedTermsDate < '2027-01-01' }
 ];
 const BADGE_FAMILY_TITLES = { moon: 'Fidélité', flame: 'Streak', flower: 'Tes données', heart: 'Ta santé' };
@@ -24850,10 +25059,12 @@ function renderInsightsSymptoms() {
   const counts = {};
   
   Object.entries(state.logs || {}).forEach(([dateStr, log]) => {
-    if (!log || !log.symptoms || !Array.isArray(log.symptoms)) return;
+    if (!log) return;
+    const _syms = [].concat(Array.isArray(log.symptoms) ? log.symptoms : [], Array.isArray(log.customSymptoms) ? log.customSymptoms : []);
+    if (!_syms.length) return;
     const d = new Date(dateStr);
     if (d < cutoff) return;
-    log.symptoms.forEach(sym => {
+    _syms.forEach(sym => {
       counts[sym] = (counts[sym] || 0) + 1;
     });
   });
@@ -27260,7 +27471,16 @@ function updateNextEvent() {
   // « Ovulation prévue le 14 » ici pendant que l'accueil disait « Suivi anneau ».
   if (typeof cyclePhasesMeaningful === 'function' && !cyclePhasesMeaningful()) {
     var _hasRhythm = (typeof contraHasPackRhythm === 'function') && contraHasPackRhythm();
-    if (!_hasRhythm) {
+    var _pregCal = !!(state.pregnancy && state.pregnancy.active && state.pregnancy.conception);
+    var _noPerCal = (typeof noPeriodsMode === 'function') && noPeriodsMode() && !(state.pill && state.pill.active);
+    var _preMenCal = !!(state.preMenarche && !state.startDate);
+    if (_pregCal) {
+      event.textContent = 'Grossesse en cours 🤰';
+      if (periodEl) periodEl.textContent = 'Pas de règles ni d\'ovulation à prévoir. Note tout saignement dans ton check-in et parle-en à ton médecin.';
+    } else if (_noPerCal || _preMenCal) {
+      event.textContent = _preMenCal ? 'Premières règles à venir 🌱' : 'Pas de règles pour le moment';
+      if (periodEl) periodEl.textContent = 'Si un saignement arrive, note-le ici : le calendrier se mettra en route.';
+    } else if (!_hasRhythm) {
       // Implant, injection, stérilet hormonal sans règles : rien à annoncer
       var _mN = (typeof contraMethod === 'function') ? contraMethod() : null;
       event.textContent = (_mN === 'sterilet') ? 'Stérilet hormonal : pas de règles à prévoir' : (_mN === 'implant' ? 'Implant : pas de règles à prévoir' : (_mN === 'injection' ? 'Injection : pas de règles à prévoir' : t('pill_no_period')));
@@ -33541,10 +33761,14 @@ function openArticle(key) {
   if (!article) return;
   
   track('article_opened', { article: key });
+  // Badges « Curieuse » / « Érudite » : la liste n'était jamais alimentée.
+  try {
+    state.articlesRead = Array.isArray(state.articlesRead) ? state.articlesRead : [];
+    if (state.articlesRead.indexOf(key) < 0) { state.articlesRead.push(key); saveState(); if (typeof checkBadges === 'function') checkBadges(); }
+  } catch (e) {}
   
   // Hide health screen, show article detail
   $('screen-health').classList.remove('active');
-  $('tab-bar').classList.add('hidden');
   $('article-detail').classList.add('active');
   
   setText('article-detail-title', article.title);
@@ -34374,7 +34598,7 @@ function openContentDetail(id, type, phaseKey) {
   
   // Hide the wellness screen behind to avoid visual overlap
   $('screen-wellness').classList.remove('active');
-  $('tab-bar').classList.add('hidden');
+  // La barre d'onglets reste visible : un onglet doit toujours répondre.
   
   setText('content-detail-header-title', item.title);
   
