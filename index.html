@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Venora — bientôt disponible</title>
+<meta name="description" content="Venora, l'application de suivi du cycle menstruel. Bientôt disponible.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#EC4899;
+    --navy:#1B2440;
+    --text-2:#6C7080;
+    --border:rgba(27,36,64,.18);
+    --surface:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    min-height:100svh;
+    display:flex;align-items:center;justify-content:center;
+    padding:32px 16px;
+    background:linear-gradient(135deg,#F8F0F5 0%,#FAF6F2 35%,#F0F8F6 100%);
+    font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--navy);
+    -webkit-font-smoothing:antialiased;
+  }
+  .card{
+    width:100%;max-width:440px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:40px 28px 30px;
+    text-align:center;
+    box-shadow:0 10px 40px rgba(27,36,64,.07);
+  }
+  .mark{
+    width:60px;height:60px;margin:0 auto 22px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    background:rgba(236,72,153,.12);
+    color:var(--primary);
+  }
+  h1{
+    font-family:'Newsreader',Georgia,serif;
+    font-weight:500;font-size:30px;line-height:1.2;
+    margin-bottom:12px;letter-spacing:-.01em;
+  }
+  .lead{font-size:15px;line-height:1.6;color:var(--text-2);}
+  .soon{
+    display:inline-block;margin-top:22px;
+    padding:9px 18px;border-radius:999px;
+    background:rgba(236,72,153,.10);
+    color:var(--primary);
+    font-size:13px;font-weight:600;
+  }
+  .legal{
+    margin-top:30px;padding-top:20px;
+    border-top:1px solid var(--border);
+    display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;
+  }
+  .legal a{
+    color:var(--text-2);text-decoration:none;
+    font-size:12.5px;font-weight:500;
+    border-bottom:1px solid transparent;
+    padding-bottom:1px;
+  }
+  .legal a:hover{color:var(--primary);border-bottom-color:var(--primary);}
+  .sig{margin-top:18px;font-size:11.5px;color:var(--text-2);opacity:.75;}
+  @media (prefers-color-scheme:dark){
+    :root{--navy:#F2F4F8;--text-2:#C5CAD6;--border:rgba(255,255,255,.18);--surface:#171A24;}
+    body{background:linear-gradient(135deg,#171A24 0%,#1B2030 55%,#15202A 100%);}
+    .card{box-shadow:0 10px 40px rgba(0,0,0,.35);}
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="mark" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5S5 10 5 14a7 7 0 0 0 14 0c0-4-7-11.5-7-11.5z"/></svg>
+    </div>
+
+    <h1>Venora arrive bientôt</h1>
+    <p class="lead">
+      L'application de suivi du cycle menstruel est en cours de finalisation.
+      Elle sera disponible très prochainement sur l'App&nbsp;Store et Google&nbsp;Play.
+    </p>
+    <span class="soon">Ouverture imminente</span>
+
+    <nav class="legal">
+      <a href="/cgu.html">Conditions d'utilisation</a>
+      <a href="/cgv.html">Conditions de vente</a>
+      <a href="/confidentialite.html">Confidentialité</a>
+      <a href="/mentions-legales.html">Mentions légales</a>
+      <a href="/suppression-compte.html">Supprimer mon compte</a>
+    </nav>
+
+    <p class="sig">Venora — Louane Jouen</p>
+  </main>
+</body>
+</html>
